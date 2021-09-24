@@ -4,20 +4,20 @@
     </head>
     <body>
         <?php
-            $valor1 = 7;
-            $valor2 = 41;
-            $valor3 = 90;
+            $num1 = 7;
+            $num2 = 41;
+            $num3 = 90;
             
-            if($valor1 > $valor2)
-                if ($valor1 > $valor3)
-                    echo "El mayor es el ".$valor1;
+            if($num1 > $num2)
+                if ($num1 > $num3)
+                    echo "El mayor es el ".$num1;
                 else
-                    echo "El mayor es el ".$valor3;
+                    echo "El mayor es el ".$num3;
             else
-                if($valor2 > $valor3)
-                    echo "El mayor es el ".$valor2;
+                if($num2 > $num3)
+                    echo "El mayor es el ".$num2;
                 else
-                    echo "El mayor es el ".$valor3;    
+                    echo "El mayor es el ".$num3;    
         ?>
     </body>
 </html>

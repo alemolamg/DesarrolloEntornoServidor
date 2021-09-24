@@ -1,8 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    function sumaCuadrados($num,$limite){
+        $result = 0;
+        for(;$num <= $limite; $num++){
+            $result = $result + pow($num, 2);
+        }
+        return $result;
+    }
+    
+    echo "La suma de los 100 primeros cuadrados es: ". sumaCuadrados(1, 100);
+
+?>
+
+<!-- 7. Calcular la suma de los cuadrados de los 100 primeros números enteros. -->
 
