@@ -4,6 +4,7 @@
     function fechaAEspanol($nomDia, $numDia, $nomMes, $anio){
         $diaFecha = "kk";
         $mesFecha = "kk2";
+        date_default_timezone_set('Europe/Madrid'); 
         
         switch ($nomDia){
             case 1: $diaFecha = "Lunes";    break;
@@ -32,7 +33,7 @@
         return $diaFecha." ".$numDia." ".$nomMes." ".$anio;  
     }
 
-    date_default_timezone_set('Europe/Madrid'); 
-    $fecha = fechaAEspanol(date('w'), date("d"), date("n"), date("Y"));
-    echo $fecha;
+    
+    //$fecha = fechaAEspanol(date('w'), date("d"), date("n"), date("Y"));
+    //echo $fecha;
 ?>

@@ -10,8 +10,14 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        include './ejercicioFecha.php';
+        
+
+         <?php
+//        include './ejercicioFecha.php';
+//        $fecha = fechaAEspanol(date('w'), date("d"), date("n"), date("Y"));
+//        echo $fecha;
+phpinfo();
         ?>
+
     </body>
 </html>
