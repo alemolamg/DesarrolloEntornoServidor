@@ -28,7 +28,7 @@
                       <?php 
                 }
             } else { ?>
-                <form action="" method="POST">
+           <form action="" method="POST">
                 Nombre: <input type="text" name="nombre"><br>
                 Apellidos: <input type="text" name="apell"><br>
 
