@@ -34,6 +34,6 @@
     }
 
     
-    //$fecha = fechaAEspanol(date('w'), date("d"), date("n"), date("Y"));
-    //echo $fecha;
+    $fecha = fechaAEspanol(date('N'), date("d"), date("n"), date("Y"));
+    echo $fecha;
 ?>
