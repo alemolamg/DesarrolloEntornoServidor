@@ -1,4 +1,3 @@
-<?php include_once 'funciones.php'; ?>
 <html>
     <head>
         <title>Agenda Personal</title>
@@ -37,7 +36,7 @@
         </table>
 
         
-        <div class=".bajoDch">
+        <div class="bajoDch">
             <form action="" method="post">
                 Nombre: <input type="text" name="nombre"><br>
                 Telefono: <input type="number" name="phone"><br>
