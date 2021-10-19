@@ -10,10 +10,17 @@
     <body>
         
         <?php 
-            $contactos = array("Pepe" => "625445566","Dani" => "666777222");
+            //$contactos = array("Pepe" => "625445566","Dani" => "666777222");
+        if(isset($_POST["enviar"])){
+            $contactos = json_decode($_POST["contac"]);
+            if (empty($_POST["nombre"])){
+                echo 'El nombre está vacio, escríbelo por favor';
+            } else {
+                 
+            }
             
-            
-            
+        }
+          
         ?>
         
         <table border="2">
@@ -25,11 +32,15 @@
             </thead>
             <tbody>
                 <?php 
-                        foreach ($contactos as $nombre => $telefono) {
-                            echo '<tr>';
-                            echo '<td>'. $nombre .'</td> <td>'.$telefono.'</td>';
-                            echo '</tr>';
+                    if(isset($_POST["enviar"])){
+                        if(isset($contactos)){
+                            foreach ($contactos as $nombre => $telefono) {
+                                echo '<tr>';
+                                echo '<td>'. $nombre .'</td> <td>'.$telefono.'</td>';
+                                echo '</tr>';
+                            }
                         }
+                    }
                 ?>
                 
             </tbody>
@@ -40,8 +51,8 @@
             <form action="" method="post">
                 Nombre: <input type="text" name="nombre"><br>
                 Telefono: <input type="number" name="phone"><br>
-                <input type="hidden" value="<?php echo $contactos?>">
-                <input type="submit" name="guardar" value="Guardar">
+                <input type="hidden" name="contac" value="<?php if(isset($contactos)) echo json_encode($contactos)?>">
+                <input type="submit" name="enviar" value="Enviar">
             </form>
         </div>
         
