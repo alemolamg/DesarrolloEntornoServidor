@@ -37,10 +37,7 @@ if(isset($_POST["enviar"])){
             .altoDch1 {color: #00f; float:right; position:absolute; margin-right:0px; margin-top:0px; top:0px; right:0px;}
         </style>
     </head>
-    <body>
-        
-        
-        
+    <body>       
         <table border="2">
             <thead>
                 <tr>
@@ -70,6 +67,7 @@ if(isset($_POST["enviar"])){
                 Nombre: <input type="text" name="nombre"><br>
                 Telefono: <input type="number" name="telefono"><br>
                 <input type="hidden" name="contactos" value=<?php if(isset($_POST["enviar"])) echo json_encode($arrayCont);?>>
+
                 <input type="submit" name="enviar" value="Enviar">
             </form>
         </div>
