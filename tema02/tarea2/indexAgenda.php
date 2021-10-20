@@ -1,3 +1,33 @@
+<?php
+if(isset($_POST["enviar"])){
+    $arrayCont = json_decode($_POST["contactos"],true);
+    if(!is_array($arrayCont))
+        $arrayCont=array();
+    if(empty($_POST["nombre"])){
+        echo "Debe introducir un nombre";
+    } else{
+        if (empty($_POST["telefono"])){
+            if (array_key_exists($_POST["nombre"], $arrayCont)){
+                unset($arrayCont[$_POST["nombre"]]);
+            } else{
+                echo "No existe el nombre a eliminar";
+            }
+        } else{
+            
+            if (!array_key_exists($_POST["nombre"], $arrayCont)){
+                echo "Elemento añadido";
+            } else {
+                echo "Elemento modificado";
+            }
+            $arrayCont["$_POST[nombre]"] = $_POST["telefono"];
+            
+        }
+    }
+    
+} 
+
+
+?>
 <html>
     <head>
         <title>Agenda Personal</title>
@@ -9,12 +39,7 @@
     </head>
     <body>
         
-        <?php 
-            $contactos = array("Pepe" => "625445566","Dani" => "666777222");
-            
-            
-            
-        ?>
+        
         
         <table border="2">
             <thead>
@@ -25,11 +50,15 @@
             </thead>
             <tbody>
                 <?php 
-                        foreach ($contactos as $nombre => $telefono) {
-                            echo '<tr>';
-                            echo '<td>'. $nombre .'</td> <td>'.$telefono.'</td>';
-                            echo '</tr>';
+                    if(isset($_POST['enviar'])){
+                        if(isset($arrayCont)){
+                            foreach ($arrayCont as $nombre => $telefono) {
+                                echo '<tr>';
+                                echo '<td>'. $nombre .'</td> <td>'.$telefono.'</td>';
+                                echo '</tr>';
+                            }
                         }
+                    }
                 ?>
                 
             </tbody>
@@ -39,9 +68,9 @@
         <div class="bajoDch">
             <form action="" method="post">
                 Nombre: <input type="text" name="nombre"><br>
-                Telefono: <input type="number" name="phone"><br>
-                <input type="hidden" value="<?php echo $contactos?>">
-                <input type="submit" name="guardar" value="Guardar">
+                Telefono: <input type="number" name="telefono"><br>
+                <input type="hidden" name="contactos" value=<?php if(isset($_POST["enviar"])) echo json_encode($arrayCont);?>>
+                <input type="submit" name="enviar" value="Enviar">
             </form>
         </div>
         
