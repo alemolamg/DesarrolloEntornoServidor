@@ -21,10 +21,18 @@
             Familia: <select id="selectPro" name="selectPro">
                 <?php 
                     $resProd = $dwes ->query('select * from producto', MYSQLI_USE_RESULT);
-                    $stock = $resProd->fetch_object();
-                    while ($stock != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
-                        echo "<option value='$stock->cod' >$stock->nombre_corto</option>";
-                        $stock = $resProd->fetch_object();
+                    $producto = $resProd->fetch_object();
+                    while ($producto != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
+                        //echo "<option value='$producto->cod' > $producto->nombre_corto</option>"; //No contemplamos selección
+                       
+                        echo "<option value='$producto->cod' ";
+                        if(isset($_POST['enviar']) && $producto->cod == $_POST['selectPro']){   //Verifico si está seleccionado
+                            echo 'selected';
+                        }
+                        echo "> $producto->nombre_corto</option>";
+                        
+                        
+                        $producto = $resProd->fetch_object();
                     }
                 ?>
             </select>
@@ -37,22 +45,24 @@
 </div>
 
 <div id="contenido">
-	<h2>Contenido</h2>
+	<h2>Stock del producto en las tiendas</h2>
+        
         <?php
             if(isset($_POST["enviar"])){
                 $dwes = new mysqli('localhost','dwes','abc123.','dwes');
                 if ($dwes->connect_errno){     //Entra si no hay errores
                     echo $dwes->connect_errno."-".$dwes->connect_error;
                 } else {
-                    echo 'muestro: '. $_POST["selectPro"];
-                    $resStock = $dwes ->query("SELECT st.* FROM tienda ti, stock st
-                                                WHERE ti.cod = st.tienda AND st.producto = '$_POST[selectPro]'");
-                    echo '<br><br><br>';
-                    $stock = $resStock->fetch_object();
-                    while ($stock != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
-                        echo "Producto: ".$stock->producto.'>'.$stock->producto.'<br>';
-                        echo "Tienda: ".$stock->tienda.'>'.$stock->tienda.'<br>';
-                        $stock = $resStock->fetch_object();
+                    //echo 'Producto: '. $_POST["selectPro"];
+                    $resStock = $dwes ->query("SELECT ti.nombre nomTi, pro.nombre_corto nomPro, st.unidades unis FROM tienda ti, stock st, producto pro
+                                                WHERE ti.cod = st.tienda AND st.producto = pro.cod AND st.producto = '$_POST[selectPro]'");
+                    //echo '<br><br>';
+                    $busqueda = $resStock->fetch_object();
+                    echo '<h4>Producto: '. $busqueda->nomPro.'</h4>';
+                    while ($busqueda != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
+                        //echo "Producto: ".$stock->producto.'>'.$stock->producto.'<br>';
+                        echo "Tienda: ".$busqueda->nomTi .' : '. $busqueda->unis .' Unidades<br>';
+                        $busqueda = $resStock->fetch_object();
                     }
                 }
             }
