@@ -26,10 +26,10 @@
                         //echo "<option value='$producto->cod' > $producto->nombre_corto</option>"; //No contemplamos selección
                        
                         echo "<option value='$producto->cod' ";
-                        if(isset($_POST['enviar']) && $producto->cod == $_POST['selectPro']){   //Verifico si está seleccionado
+                        if(isset($_POST['enviar']) && $producto->cod === $_POST['selectPro']){   //Verifico si está seleccionado
                             echo 'selected';
                         }
-                        echo "> $producto->nombre_corto</option>";
+                        echo "> $producto->nombre_corto </option>";
                         
                         
                         $producto = $resProd->fetch_object();
