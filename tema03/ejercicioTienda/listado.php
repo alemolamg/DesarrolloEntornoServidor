@@ -20,7 +20,7 @@
 	<form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
             Familia: <select id="selectPro" name="selectPro">
                 <?php 
-                    $resProd = $dwes ->query('select * from producto', MYSQLI_USE_RESULT);
+                    $resProd = $dwes ->query('select * from producto ORDER BY nombre_corto', MYSQLI_USE_RESULT);
                     $producto = $resProd->fetch_object();
                     while ($producto != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
                         //echo "<option value='$producto->cod' > $producto->nombre_corto</option>"; //No contemplamos selección
