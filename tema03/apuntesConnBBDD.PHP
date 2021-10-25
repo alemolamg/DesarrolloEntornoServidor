@@ -38,14 +38,14 @@ if($dwes ->query('UPDATE stock SET unidades=10 WHERE producto="EEEPC1005PXD"')){
 $resultado = $dwes ->query('select * from producto');
 if (!$dwes -> errno){
     echo $resultado -> num_rows . '<br>';
-    $stock = $resultado->fetch_object(); //descargamos los datos de una fila en stock
-    while ($stock != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
+    $busqueda = $resultado->fetch_object(); //descargamos los datos de una fila en stock
+    while ($busqueda != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
     //print "<p>Producto $stock->producto: $stock->unidades unidades.</p>";
 
-        echo '<br>Código ' . $stock -> cod . '<br>';
-        echo 'Nombre ' . $stock -> nombre_corto . '<br>';
-        echo 'Precio ' . $stock -> PVP . '<br><br><hr>';
-    $stock = $resultado->fetch_object();
+        echo '<br>Código ' . $busqueda -> cod . '<br>';
+        echo 'Nombre ' . $busqueda -> nombre_corto . '<br>';
+        echo 'Precio ' . $busqueda -> PVP . '<br><br><hr>';
+    $busqueda = $resultado->fetch_object();
 }
 }
 
