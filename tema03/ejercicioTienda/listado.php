@@ -7,16 +7,20 @@
 </head>
 
 <body>
-    <?php
-    $dwes = new mysqli('localhost','dwes','abc123.','dwes');
-    if ($dwes->connect_errno){     //Entra si no hay errores
-            echo $dwes->connect_errno."-".$dwes->connect_error;
-    } else {
-        
-    ?>
+    
 
 <div id="encabezado">
 	<h1>Ejercicio: Listado de productos de una família </h1>
+        <?php
+    $dwes = new mysqli('localhost','dwes','abc123.','dwes');
+    if ($dwes->connect_errno){     //Entra si hay hay errores
+            //$mensaje = $dwes->connect_errno."-".$dwes->connect_error;
+            $error = $dwes->connect_errno;
+    } else {
+        $error = $dwes->connect_errno;
+        $mensaje = "No hay errores";
+        
+    ?>
 	<form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
             Familia: <select id="selectPro" name="selectPro">
                 <?php 
@@ -70,6 +74,13 @@
 </div>
 
 <div id="pie">
+    <?php
+        if ($error != 0){
+            //echo $error;
+            echo $mensaje;
+            echo $dwes->connect_errno."-".$dwes->connect_error;
+        }
+    ?>
 </div>
 </body>
 </html>
