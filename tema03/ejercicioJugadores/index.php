@@ -1,24 +1,17 @@
-<ul>
-    <li><a href="./insertJug">1. Insertar Jugadores</a></li>
-    <li><a href="./mostrarTodosJug">2. Mostrar Todos los Jugadores</a></li>
-    <li><a href="./buscarJug">3. Buscar Jugadores</a></li>
-    <li><a href="./insertJug">4. Modificar jugador</a></li>
-    <li><a href="./insertJug">5. Borrar jugador</a></li>
-</ul>
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="disenio/disenio.css" media="screen" />
+    <title>Ejercicio Jugadores</title>
+</head>
 
-<?php
+<body>
+    <h1>Prueba PHP incluido</h1>
+    <?php include("menu.php") ?>
+</body>
 
-
-/*
-$dwes = new mysqli('localhost','dwes','abc123.','prueba');
-    if ($dwes->connect_errno){     //Entra si hay hay errores
-        //$mensaje = $dwes->connect_errno."-".$dwes->connect_error;
-        $error = $dwes->connect_errno;
-        die( "ERROR AL CONECTAR CON EL SERVIDOR DE BD");
-    }
-    $error = $dwes->connect_errno;
-    $mensaje = "No hay errores";
-*/
-
-?>
+</html>
