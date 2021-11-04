@@ -33,8 +33,6 @@
                             echo 'selected';
                         }
                         echo "> $producto->nombre_corto </option>";
-                        
-                        
                         $producto = $resProd->fetch_object();
                     }
                 ?>
@@ -57,7 +55,7 @@
                     echo $dwes->connect_errno."-".$dwes->connect_error;
                 } else {
                     $consulta = $dwes->stmt_init();
-                    if($consulta->prepare("SELECT ti.nombre nomTi, pro.nombre_corto nomPro, st.unidades unis , ti.cod codt FROM tienda ti, stock st, producto pro
+                    if($consulta->prepare("SELECT ti.nombre nomTi,st.tienda codti, pro.nombre_corto nomPro, st.unidades unis FROM tienda ti, stock st, producto pro
                                                 WHERE ti.cod = st.tienda AND st.producto = pro.cod AND st.producto = ?")){
                         $consulta->bind_param('s', $_POST["selectPro"]);
                         $consulta->execute();
@@ -71,38 +69,44 @@
                         while ($busqueda != null) { //funciona igual que los cursores en mysql, bucle hasta llegar a última fila
                             //echo "Producto: ".$stock->producto.'>'.$stock->producto.'<br>';
                             echo "Tienda, ".$busqueda->nomTi .' : ';
-                            echo '<input type="number" name="unidades[]" value="'.$busqueda->unis .'">'.' Unidades<br><br>';
+                            echo '<input type="number" name=unidades[] value="'.$busqueda->unis .'">'.' Unidades<br><br>';
+                            echo '<input type="hidden" name=tiendas[] value="'.$busqueda->codti.'">';
+                            echo '<input type="hidden" name="actPro" value="'.$_POST["selectPro"].'">' ;
                             $busqueda = $resStock->fetch_object();
-                            $listTiendas[] = $busqueda->codt;
                         }
                         ?>
-                            <input type="hidden" name="tiendas" value="<?php json_encode($listTiendas);  ?>">
-                            <input type="hidden" name="selectPro" value="<?php $_POST['selectPro'];?>">
+                            <!-- <input type="hidden" name="tiendas[]" value="<?php json_encode($listTiendas);  ?>"> -->
+                            <!-- <input type="hidden" name="actPro" value="<?php $_POST['selectPro'];?>"> -->
                             <input type="submit" name="actual" value="Actualizar">
                         </form>
                         <?php
                     }
                 }
-            } else{ 
+            } else{     //Se ha pulsado actualizar 
+                
                 if (isset ($_POST["actual"])) {
                     $dwes = new mysqli('localhost','dwes','abc123.','dwes');
                     if ($dwes->connect_errno){     //Entra si hay errores
                         echo $dwes->connect_errno."-".$dwes->connect_error;
                     } else {
                         $updUnis = $dwes->stmt_init();
-                        $listaTiendas = json_decode($_POST["tiendas"]);
+                        //$listaTiendas = json_decode($_POST["tiendas"]);
+                        $listaTiendas = $_POST["tiendas"];
                         $unidades = $_POST["unidades"];
                         
-                        if($updUnis->prepare("UPDATE stock SET unidades = ? WHERE tienda = ? AND producto = ?")){
+                        if($updUnis->prepare("UPDATE stock SET unidades =? WHERE tienda =? AND producto =?")){
                             for ($i = 0; $i < sizeof($unidades);$i++){
-                                $updUnis->bind_param('iis', $unidades[$i],$listTiendas[$i],$_POST["selectPro"]) ;
+                                echo $i.' unidades = '.$unidades[$i].' ,tienda= '.$listaTiendas[$i].', producto: '.$_POST['actPro'].'<br>';
+                                $updUnis->bind_param('iis', $unidades[$i],$listaTiendas[$i],$_POST['actPro']) ;
                                 $updUnis->execute();
+                                echo $updUnis->error;
                             }
                             echo "Ejecución finalizada";
                         }
-                        }
+                        
                     }
                 }
+            }
         ?>
 </div>
 
