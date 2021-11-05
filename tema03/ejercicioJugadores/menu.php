@@ -2,9 +2,10 @@
 <ul>
     <li><a href="./insertJug.php">1. Insertar Jugadores</a></li>
     <li><a href="./findAllJug.php">2. Mostrar Todos los Jugadores</a></li>
-    <li><a href="./buscarJug.php">3. Buscar Jugadores</a></li>
+    <!-- <li><a href="./buscarJug.php">3. Buscar Jugadores</a></li> -->
+    <li><a href="./buscar.php">3. Buscar Jugadores</a></li>
     <li><a href="./insertJug.php">4. Modificar jugador</a></li>
-    <li><a href="./insertJug.php">5. Borrar jugador</a></li>
+    <!--<li><a href="./insertJug.php">5. Borrar jugador</a></li> -->
 </ul>
 
 

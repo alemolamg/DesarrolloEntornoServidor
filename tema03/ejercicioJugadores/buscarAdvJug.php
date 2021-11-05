@@ -13,13 +13,14 @@ $mensaje = "No hay errores";
 
 function calcEquipos($conx)
 {
-
     $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
     $result = $conx->query($sql);
     if ($conx->errno)
         die($conx->error);
     while ($a = $result->fetch_object()) {
-        echo "<option value='$a->equipo'>$a->equipo</option><br>";
+        if ($_POST['equipo'] == $a->equipo) $coinc =  'selected';
+        else $coinc = "";
+        echo "<option value='$a->equipo' $coinc >$a->equipo</option><br>";
     }
 }
 
@@ -30,44 +31,87 @@ function prepVacio($valor)
     } else return '%';
 }
 
+
+if (!isset($_POST['buscar'])) {
+
 ?>
 
-<div class="formulario">
-    <form action="" method="post">
-        DNI:<input type="text" name="dni"><br>
-        Nombre: <input type="text" name="nombre"><br>
-        Dorsal: <select name="dorsal">
-            <?php
-            for ($i = 0; $i <= 11; $i++) {
-                if ($i != 0) {
-                    echo "<option value='$i'>$i</option><br>";
-                } else
-                    echo "<option value='%'>Cualquiera</option><br>";
-            }
-            ?>
-        </select><br>
-        Posición: <select name="posicion">
-            <option value="%">Cualquiera</option>
-            <option value="Portero">Portero</option><br>
-            <option value="Defensa">Defensa</option><br>
-            <option value="Centrocampista">Centrocampista</option><br>
-            <option value="Delantero">Delantero</option><br>
-        </select><br>
-        Equipo: <select name="equipo">
-            <option value="%">Cualquiera</option>
-            <?php calcEquipos($dwes) ?>
-        </select> <br>
-        Num. Goles:<input type="text" name="numgoles"><br>
-        <br><br>
-        <input type="button" value="Volver" onclick="location.href='./index.php'">
-        <input type="submit" value="Buscar" name="buscar">
-    </form>
-</div>
+    <div class="formulario">
+        <form action="" method="post">
+            DNI:<input type="text" name="dni"><br>
+            Nombre: <input type="text" name="nombre"><br>
+            Dorsal: <select name="dorsal">
+                <?php
+                for ($i = 0; $i <= 11; $i++) {
+                    if ($i != 0) {
+                        echo "<option value='$i'>$i</option><br>";
+                    } else
+                        echo "<option value='%'>Cualquiera</option><br>";
+                }
+                ?>
+            </select><br>
+            Posición: <select name="posicion">
+                <option value="%">Cualquiera</option>
+                <option value="Portero">Portero</option><br>
+                <option value="Defensa">Defensa</option><br>
+                <option value="Centrocampista">Centrocampista</option><br>
+                <option value="Delantero">Delantero</option><br>
+            </select><br>
+            Equipo: <select name="equipo">
+                <option value="%">Cualquiera</option>
+                <?php calcEquipos($dwes) ?>
+            </select> <br>
+            Num. Goles:<input type="number" name="numgoles"><br>
+            <br><br>
+            <input type="button" value="Volver" onclick="location.href='./index.php'">
+            <input type="submit" value="Buscar" name="buscar">
+        </form>
+    </div>
 
 <?php
-if (isset($_POST['buscar'])) {
-    //$sql = "SELECT * FROM `jugadores` WHERE `dni` LIKE '$_POST[dni]' AND `nombre` LIKE '$_POST[nombre]' AND `dorsal` LIKE '$_POST[dorsal]' AND `posicion` LIKE '$_POST[posicion]' AND `equipo` LIKE '$_POST[equipo]' AND `numGoles` LIKE '$_POST[numgoles]'";
-    $sql = "SELECT * FROM `jugadores` WHERE `equipo` LIKE '$_POST[equipo]'  ORDER BY `dni`;";
+} else if (isset($_POST['buscar'])) {
+?>
+    <div class="formulario">
+        <form action="" method="post">
+            DNI:<input type="text" name="dni" value='<?php if (isset($_POST["dni"])) echo $_POST["dni"];  ?>'><br>
+            Nombre: <input type="text" name="nombre" value='<?php if (isset($_POST['nombre'])) echo $_POST["nombre"]; ?>'><br>
+            Dorsal: <select name="dorsal">
+                <?php
+                for ($i = 0; $i <= 11; $i++) {
+                    if ($i != 0) {
+                        if ($_POST['dorsal'] == $i) $coinc =  'selected';
+                        else $coinc = "";
+                        echo "<option value='$i'" . $coinc . ">$i</option><br>";
+                    } else
+                        echo "<option value='%' selected >Cualquiera</option><br>";
+                }
+                ?>
+            </select><br>
+            Posición: <select name="posicion">
+
+                <option value="%" selected>Cualquiera</option>
+                <option value="Portero" <?php if ($_POST['posicion'] == "Portero") echo 'selected'; ?>>Portero</option><br>
+                <option value="Defensa" <?php if ($_POST['posicion'] == "Defensa") echo 'selected'; ?>>Defensa</option><br>
+                <option value="Centrocampista" <?php if ($_POST['posicion'] == "Centrocampista") echo 'selected'; ?>>Centrocampista</option><br>
+                <option value="Delantero" <?php if ($_POST['posicion'] == "Delantero") echo 'selected'; ?>>Delantero</option><br>
+            </select><br>
+            Equipo: <select name="equipo">
+                <option value="%" selected>Cualquiera</option>
+                <?php calcEquipos($dwes) ?>
+            </select> <br>
+            Num. Goles:<input type="number" name="numgoles" value="<?php if (isset($_POST['numgoles'])) echo $_POST['numgoles']; ?>"><br>
+            <br><br>
+            <input type="button" value="Volver" onclick="location.href='./index.php'">
+            <input type="submit" value="Buscar" name="buscar">
+            <input type="submit" value="limpiar" name="limpiar">
+        </form>
+    </div>
+
+
+
+<?php
+    $sql = "SELECT * FROM `jugadores` WHERE `dni` LIKE '%$_POST[dni]%' AND `nombre` LIKE '%$_POST[nombre]%' AND `dorsal` LIKE '$_POST[dorsal]' AND `posicion` LIKE '$_POST[posicion]' AND
+     `equipo` LIKE '$_POST[equipo]' AND `numGoles` LIKE '%$_POST[numgoles]%'";
     $result = $dwes->query($sql);
     if ($dwes->errno)
         die($dwes->error);

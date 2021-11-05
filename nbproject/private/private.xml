@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/listadoConsPre.php</file>
-            <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/ejercicioJugadores/aniadirJug.php</file>
             <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/ejemplosConsultas/ejemploAlumnos.php</file>
-            <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/ejercicioJugadores/index.php</file>
+            <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/ejercicioJugadores/insertJug.php</file>
+            <file>file:/C:/xampp/htdocs/proyectoEntornoServidor/tema03/ejercicioJugadores/findAllJug.php</file>
         </group>
     </open-files>
 </project-private>
