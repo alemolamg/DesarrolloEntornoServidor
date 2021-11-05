@@ -1,60 +1,80 @@
-<h1>Buscar Jugadores</h1>
-<h1>NO TOCAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1</h1>
-<input type="button" value="Búsqueda Avanzada" onclick="location.href='./buscarAdvJug.php'">
-<?php
-//Comienzo haciendo la conexión
-$dwes = new mysqli('localhost', 'dwes', 'abc123.', 'futbol');
-if ($dwes->connect_errno) {     //Entra si hay hay errores
-    //$mensaje = $dwes->connect_errno."-".$dwes->connect_error;
-    $error = $dwes->connect_errno;
-    die("ERROR AL CONECTAR CON EL SERVIDOR DE BD");
-}
-$error = $dwes->connect_errno;
-$mensaje = "No hay errores";
+<!DOCTYPE html>
+<html lang="es">
 
-function calcEquipos($conx)
-{
-    $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
-    $result = $conx->query($sql);
-    if ($conx->errno)
-        die($conx->error);
-    while ($a = $result->fetch_object()) {
-        echo "<option value='$a->equipo'>$a->equipo</option><br>";
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugadores: Búsqueda</title>
+    <script src="buscarJug.js"></script>
+</head>
+
+<body>
+    <h1>Buscar Jugadores</h1>
+    <!-- no tocar estos
+    <input type="button" value="Volver" onclick="location.href='./index.php'">
+    <input type="button" value="Búsqueda Avanzada" onclick="location.href='./buscarAdvJug.php'"><br>
+-->
+    <?php
+    //Comienzo haciendo la conexión
+    $dwes = new mysqli('localhost', 'dwes', 'abc123.', 'futbol');
+    if ($dwes->connect_errno) {     //Entra si hay hay errores
+        //$mensaje = $dwes->connect_errno."-".$dwes->connect_error;
+        $error = $dwes->connect_errno;
+        die("ERROR AL CONECTAR CON EL SERVIDOR DE BD");
     }
-}
+    $error = $dwes->connect_errno;
+    $mensaje = "No hay errores";
 
-?>
+    /*function calcEquipos($conx)
+    {
+        $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
+        $result = $conx->query($sql);
+        if ($conx->errno)
+            die($conx->error);
+        while ($a = $result->fetch_object()) {
+            if ($_POST['equipo'] == $a->equipo) $coinc =  'selected';
+            else $coinc = "";
+            echo "<option value='$a->equipo' $coinc >$a->equipo</option><br>";
+        }
+    }*/
 
-<div class="formulario">
-    <form action="" method="post">
-        DNI:<input type="text" name="dni"><br>
-        Nombre: <input type="text" name="nombre"><br>
-        Dorsal: <select name="dorsal">
-            <?php
-            for ($i = 0; $i <= 11; $i++) {
-                if ($i != 0) {
-                    echo "<option value='$i'>$i</option><br>";
-                } else
-                    echo "<option value='*'>Cualquiera</option><br>";
-            }
-            ?>
-        </select><br>
-        Posición: <select name="posicion">
-            <option value="*">Cualquiera</option>
-            <option value="Portero">Portero</option><br>
-            <option value="Defensa">Defensa</option><br>
-            <option value="Centrocampista">Centrocampista</option><br>
-            <option value="Delantero">Delantero</option><br>
-        </select><br>
-        Equipo:<input type="text" name="equipo"><br>
-        Num. Goles:<input type="text" name="numgoles"><br>
-        <br><br>
-        <input type="button" value="Volver" onclick="location.href='./index.php'">
-        <input type="submit" value="Buscar" name="buscar">
-    </form>
-</div>
+    function buscarJug($dwes)
+    {
+        $sql = "SELECT * FROM `jugadores` WHERE `dni` LIKE '%$_POST[dni]%' AND `posicion` LIKE '$_POST[posicion]' AND `equipo` LIKE '$_POST[equipo]'";
+        $result = $dwes->query($sql);
+        if ($dwes->errno)
+            die($dwes->error);
 
-<?php
+        while ($fila = $result->fetch_object()) {
+            echo "DNI Jugador: " . prepVacio($fila->dni) . "<br>";
+            echo "Nombre: " . prepVacio($fila->nombre) . "<br>";
+            echo "Dorsal: " . $fila->dorsal . "<br>";
+            echo "Posición: " . $fila->posicion . "<br>";
+            echo "Equipo: " . $fila->equipo . "<br>";
+            echo "Número Goles: " . prepVacio($fila->numGoles) . "<br>";
+            echo "<br> ----------------------------- <br>";
+        }
+    }
+
+    ?>
+
+    <br>
+    <div>
+        <form action="" method="POST" onsubmit="return false">
+            Elige opción de búsqueda:
+            <select name="elector" id="elector">
+                <option value="1">DNI</option>
+                <option value="2">Equipo</option>
+                <option value="3">Posición</option>
+            </select>
+            <button onclick="mostrarEle()">Elegir</button>
+        </form>
+    </div>
+
+    <div id="formulario"></div>
 
 
-?>
+</body>
+
+</html>
