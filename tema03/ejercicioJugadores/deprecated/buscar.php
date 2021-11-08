@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- No se utiliza al final
+    <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -27,4 +28,4 @@
     ?>
 </body>
 
-</html>
+</html> -->
