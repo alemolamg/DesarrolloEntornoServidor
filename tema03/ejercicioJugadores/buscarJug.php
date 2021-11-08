@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jugadores: Búsqueda</title>
-    <script src="buscarJug.js"></script>
 </head>
 
 <body>
-    <h1>Buscar Jugadores</h1>
+    <h2>Buscar Jugadores</h2>
     <!-- no tocar estos
     <input type="button" value="Volver" onclick="location.href='./index.php'">
     <input type="button" value="Búsqueda Avanzada" onclick="location.href='./buscarAdvJug.php'"><br>
@@ -26,7 +25,7 @@
     $error = $dwes->connect_errno;
     $mensaje = "No hay errores";
 
-    /*function calcEquipos($conx)
+    function calcEquipos($conx)
     {
         $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
         $result = $conx->query($sql);
@@ -37,11 +36,36 @@
             else $coinc = "";
             echo "<option value='$a->equipo' $coinc >$a->equipo</option><br>";
         }
-    }*/
+    }
+
+    function prepVacio($valor)
+    {
+        if ($valor != '' || $valor != '%') {
+            return $valor;
+        } else return '%';
+    }
 
     function buscarJug($dwes)
     {
-        $sql = "SELECT * FROM `jugadores` WHERE `dni` LIKE '%$_POST[dni]%' AND `posicion` LIKE '$_POST[posicion]' AND `equipo` LIKE '$_POST[equipo]'";
+        if (isset($_POST['dni'])) {
+            $dni = $_POST['dni'];
+        } else {
+            $dni = "";
+        }
+
+        if (isset($_POST['equipo'])) {
+            $equipo = $_POST['equipo'];
+        } else {
+            $equipo = "";
+        }
+
+        if (isset($_POST['posicion'])) {
+            $posicion = $_POST['posicion'];
+        } else {
+            $posicion = "";
+        }
+
+        $sql = "SELECT * FROM `jugadores` WHERE `dni` LIKE '%$dni%' AND `posicion` LIKE '%$posicion%' AND `equipo` LIKE '%$equipo%'";
         $result = $dwes->query($sql);
         if ($dwes->errno)
             die($dwes->error);
@@ -61,20 +85,86 @@
 
     <br>
     <div>
-        <form action="" method="POST" onsubmit="return false">
+        <form action="" method="POST">
             Elige opción de búsqueda:
             <select name="elector" id="elector">
                 <option value="1">DNI</option>
                 <option value="2">Equipo</option>
                 <option value="3">Posición</option>
             </select>
-            <button onclick="mostrarEle()">Elegir</button>
+            <!-- <button onclick="mostrarEle()" name="elegir">Elegir</button> -->
+            <input type="submit" value="Elegir" name="elegir">
         </form>
     </div>
 
     <div id="formulario"></div>
 
+    <script src="buscarJug.js"></script>
 
+
+
+    <!-- Buscar por equipo -->
+    <br>
+
+
+    <?php
+    if (isset($_POST['elegir']) || isset($_POST['equipo']) || isset($_POST['dni']) || isset($_POST['posicion'])) {
+        echo "hemos entrado";
+        if ($_POST['elector'] == 1) {
+    ?>
+            <form action="" method="POST">
+                DNI:<input type="text" name="dni"><br>
+                <input type="hidden" name="elector" value="<?php echo $_POST['elector'];  ?>">
+                <!-- <button onclick="buscarJug($dwes)">Buscar por DNI</button> -->
+                <input type="submit" value="buscar" name="buscar" onclick="buscarJug($dwes)">
+            </form>
+
+        <?php
+        }
+
+        if ($_POST['elector'] == 2) {
+        ?>
+            <div>
+                <form action="" method="POST">
+                    Equipo: <select name="equipo">
+                        <option value="%" selected>Cualquiera</option>
+                        <?php calcEquipos($dwes) ?>
+                    </select> <br>
+                    <input type="hidden" name="elector" value="<?php echo $_POST['elector'];  ?>">
+                    <input type="submit" value="buscar" name="buscar" onclick="buscarJug($dwes)">
+                    <!--<button type="submit" onclick="buscarJug($dwes)">Buscar por Equipo</button> -->
+                </form>
+            </div>
+
+            <!-- Buscar por DNI -->
+
+        <?php
+        }
+
+        if ($_POST['elector'] == 3) {
+        ?>
+            <form action="" method="POST">
+                Posición: <select name="posicion">
+                    <option value="*" selected>Cualquiera</option>
+                    <option value="Portero">Portero</option><br>
+                    <option value="Defensa">Defensa</option><br>
+                    <option value="Centrocampista">Centrocampista</option><br>
+                    <option value="Delantero">Delantero</option><br>
+                </select><br>
+                <input type="hidden" name="elector" value="<?php echo $_POST['elector'];  ?>">
+                <input type="submit" value="buscar" name="buscar" onclick="buscarJug($dwes)">
+            </form>
+
+    <?php
+        }
+    } else {
+        echo 'Botón no pulsado';
+    }
+
+    if (isset($_POST['buscar'])) {
+        buscarJug($dwes);
+    }
+    ?>
 </body>
 
 </html>

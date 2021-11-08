@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h2>Buscar Jugadores</h2>
+    <h1>Buscar Jugadores</h1>
     <form action="" method="POST">
         <?php if (!isset($_POST['busquedaAvan'])) {
             echo '<input type="hidden" name="busquedaAvan" id="busquedaAvan">';
