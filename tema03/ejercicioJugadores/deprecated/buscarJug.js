@@ -15,3 +15,7 @@ function mostrarEle() {
         document.getElementById("formulario").innerHTML = codigo;
     }
 }
+
+mostrarConsola = (param) => {
+    console.log(param);
+}

@@ -1,4 +1,4 @@
-<h1>Búsqueda Avanzada Jugadores</h1>
+<h2>Búsqueda Avanzada Jugadores</h2>
 
 <?php
 //Comienzo haciendo la conexión
