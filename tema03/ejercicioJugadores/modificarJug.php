@@ -1,4 +1,11 @@
-<h2>Añade un jugador</h2>
+<h1>Modificar jugador</h1>
+
+
+<form action="" method="POST">
+    Buscar por DNI:<input type="text" name="dni"><br>
+    <!-- <button onclick="buscarJug($dwes)">Buscar por DNI</button> -->
+    <input type="submit" value="buscar" name="buscar" onclick="buscarJug($dwes)">
+</form>
 
 <div class="formulario">
     <form action="" method="post">

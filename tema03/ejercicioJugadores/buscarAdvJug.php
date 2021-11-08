@@ -11,26 +11,29 @@ if ($dwes->connect_errno) {     //Entra si hay hay errores
 $error = $dwes->connect_errno;
 $mensaje = "No hay errores";
 
-function calcEquipos($conx)
-{
-    $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
-    $result = $conx->query($sql);
-    if ($conx->errno)
-        die($conx->error);
-    while ($a = $result->fetch_object()) {
-        if ($_POST['equipo'] == $a->equipo) $coinc =  'selected';
-        else $coinc = "";
-        echo "<option value='$a->equipo' $coinc >$a->equipo</option><br>";
+include("funcionesBusq.php");
+
+/*
+    function calcEquipos($conx)
+    {
+        $sql = "SELECT `equipo` FROM `jugadores` GROUP BY `equipo` ORDER BY `equipo`;";
+        $result = $conx->query($sql);
+        if ($conx->errno)
+            die($conx->error);
+        while ($a = $result->fetch_object()) {
+            if ($_POST['equipo'] == $a->equipo) $coinc =  'selected';
+            else $coinc = "";
+            echo "<option value='$a->equipo' $coinc >$a->equipo</option><br>";
+        }
     }
-}
 
-function prepVacio($valor)
-{
-    if ($valor != '' || $valor != '%') {
-        return $valor;
-    } else return '%';
-}
-
+    function prepVacio($valor)
+    {
+        if ($valor != '' || $valor != '%') {
+            return $valor;
+        } else return '%';
+    } 
+*/
 
 if (!isset($_POST['buscar'])) {
 
@@ -64,6 +67,7 @@ if (!isset($_POST['buscar'])) {
             Num. Goles:<input type="number" name="numgoles"><br>
             <br><br>
             <input type="button" value="Volver" onclick="location.href='./index.php'">
+            <input type="button" value="Búsqueda Normal" onclick="location.href='./buscarJug.php'"><br>
             <input type="submit" value="Buscar" name="buscar">
         </form>
     </div>
@@ -102,6 +106,7 @@ if (!isset($_POST['buscar'])) {
             Num. Goles:<input type="number" name="numgoles" value="<?php if (isset($_POST['numgoles'])) echo $_POST['numgoles']; ?>"><br>
             <br><br>
             <input type="button" value="Volver" onclick="location.href='./index.php'">
+            <input type="button" value="Búsqueda Normal" onclick="location.href='./buscarJug.php'"><br>
             <input type="submit" value="Buscar" name="buscar">
             <input type="submit" value="limpiar" name="limpiar">
         </form>
@@ -117,6 +122,7 @@ if (!isset($_POST['buscar'])) {
         die($dwes->error);
 
     while ($fila = $result->fetch_object()) {
+        echo "<br>";
         echo "DNI Jugador: " . prepVacio($fila->dni) . "<br>";
         echo "Nombre: " . prepVacio($fila->nombre) . "<br>";
         echo "Dorsal: " . $fila->dorsal . "<br>";
