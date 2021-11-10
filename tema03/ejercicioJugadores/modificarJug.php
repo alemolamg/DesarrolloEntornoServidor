@@ -2,36 +2,85 @@
 
 
 <form action="" method="POST">
-    Buscar por DNI:<input type="text" name="dni"><br>
-    <!-- <button onclick="buscarJug($dwes)">Buscar por DNI</button> -->
-    <input type="submit" value="buscar" name="buscar" onclick="buscarJug($dwes)">
+    Buscar por DNI:<input type="text" name="dniBus"><br>
+    <input type="submit" value="buscar" name="buscar">
 </form>
 
-<div class="formulario">
-    <form action="" method="post">
-        DNI:<input type="text" name="dni"><br>
-        Nombre: <input type="text" name="nombre"><br>
-        Dorsal: <select name="dorsal">
-            <?php
-            for ($i = 1; $i <= 11; $i++) {
-                echo "<option value'=$i'>$i</option><br>";
-            }
-            ?>
-        </select><br>
-        Posición: <select name="posicion" multiple="true">
-            <!--multiple="false"-->
-            <option value="Portero">Portero</option><br>
-            <option value="Defensa">Defensa</option><br>
-            <option value="Centrocampista">Centrocampista</option><br>
-            <option value="Delantero">Delantero</option><br>
-        </select><br>
-        Equipo:<input type="text" name="equipo"><br>
-        Num. Goles:<input type="number" name="numgoles"><br>
-        <br><br>
-        <input type="button" value="Volver" onclick="location.href='./index.php'">
-        <input type="submit" value="Guardar" name="guardar">
-    </form>
-</div>
+<?php
+include("funcionesBusq.php");
+if (!isset($_POST["buscar"])) {
+?>
+    <div class="formulario">
+        <form action="" method="post">
+            DNI:<input type="text" name="dni" disabled><br>
+            Nombre: <input type="text" name="nombre" disabled><br>
+            Dorsal: <select name="dorsal" disabled>
+                <?php
+                for ($i = 1; $i <= 11; $i++) {
+                    echo "<option value'=$i'>$i</option><br>";
+                }
+                ?>
+            </select><br>
+            Posición: <select name="posicion" multiple="true" disabled>
+                <!--multiple="false"-->
+                <option value="Portero">Portero</option><br>
+                <option value="Defensa">Defensa</option><br>
+                <option value="Centrocampista">Centrocampista</option><br>
+                <option value="Delantero">Delantero</option><br>
+            </select><br>
+            Equipo: <select name="equipo" disabled>
+                <option value="%">Cualquiera</option>
+                <?php //calcEquipos($dwes); 
+                ?>
+            </select> <br>
+            Num. Goles:<input type="number" name="numgoles" disabled><br>
+            <br><br>
+            <input type="button" value="Volver" onclick="location.href='./index.php'" disabled>
+            <input type="submit" value="Guardar" name="guardar" disabled>
+        </form>
+    </div>
+
+<?php
+} else {
+    $conex = conexionBD(); //Hago la conexión con la BD
+    // Buscamos que exista el usuario con el dni indicado:
+    $jugMod = jugadorPorDNI($conex, $_POST["dniBus"]);
+
+
+
+?>
+    <div class="formulario">
+        <form action="" method="post">
+            DNI:<input type="text" name="dni"><br>
+            Nombre: <input type="text" name="nombre"><br>
+            Dorsal: <select name="dorsal">
+                <?php
+                for ($i = 1; $i <= 11; $i++) {
+                    echo "<option value'=$i'>$i</option><br>";
+                }
+                ?>
+            </select><br>
+            Posición: <select name="posicion" multiple="true">
+                <!--multiple="false"-->
+                <option value="Portero">Portero</option><br>
+                <option value="Defensa">Defensa</option><br>
+                <option value="Centrocampista">Centrocampista</option><br>
+                <option value="Delantero">Delantero</option><br>
+            </select><br>
+            Equipo: <select name="equipo">
+                <option value="%">Cualquiera</option>
+                <?php calcEquipos($conex) ?>
+            </select> <br>
+            Num. Goles:<input type="number" name="numgoles"><br>
+            <br><br>
+            <input type="button" value="Volver" onclick="location.href='./index.php'">
+            <input type="submit" value="Guardar" name="guardar">
+        </form>
+    </div>
+
+<?php
+}
+?>
 
 <?php
 if (isset($_POST['guardar'])) {

@@ -12,6 +12,29 @@ function calcEquipos($conx)
     }
 }
 
+function conexionBD()
+{
+    $dwes = new mysqli('localhost', 'dwes', 'abc123.', 'futbol');
+    if ($dwes->connect_errno) {     //Entra si hay hay errores
+        //$mensaje = $dwes->connect_errno."-".$dwes->connect_error;
+        $error = $dwes->connect_errno;
+        die("ERROR AL CONECTAR CON EL SERVIDOR DE BD");
+    }
+    $error = $dwes->connect_errno;
+    $mensaje = "No hay errores";
+    //echo "<h3>ERROR $error : $mensaje </h3>";
+    return $dwes;
+}
+
+function jugadorPorDNI($conx, $dni)
+{
+    $sql = "SELECT * FROM `jugadores` WHERE `dni` = $dni LIMIT 1;";
+    $result = $conx->query($sql);
+    if ($conx->errno)
+        die($conx->error);
+    return $result->fetch_object();
+}
+
 
 function prepVacio($valor)
 {
@@ -57,4 +80,3 @@ function buscarJug($dwes)
         echo "<br> ----------------------------- <br>";
     }
 }
-?>
