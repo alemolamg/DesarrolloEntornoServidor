@@ -28,7 +28,7 @@ function conexionBD()
 
 function jugadorPorDNI($conx, $dni)
 {
-    $sql = "SELECT * FROM `jugadores` WHERE `dni` = $dni LIMIT 1;";
+    $sql = "SELECT * FROM `jugadores` WHERE `dni` = '$dni' LIMIT 1;";
     $result = $conx->query($sql);
     if ($conx->errno)
         die($conx->error);

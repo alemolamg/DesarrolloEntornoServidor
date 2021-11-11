@@ -2,8 +2,9 @@
 
 
 <form action="" method="POST">
-    Buscar por DNI:<input type="text" name="dniBus"><br>
+    Buscar por DNI:<input type="text" name="dni"><br>
     <input type="submit" value="buscar" name="buscar">
+    <input type="button" value="Volver" onclick="location.href='./index.php'">
 </form>
 
 <?php
@@ -42,11 +43,12 @@ if (!isset($_POST["buscar"])) {
 
 <?php
 } else {
+    echo "Pulsado Buscar correctamente<br>";
+    echo "Valor dniBusqueda:" . $_POST['dni'] . "<br>";
     $conex = conexionBD(); //Hago la conexión con la BD
     // Buscamos que exista el usuario con el dni indicado:
-    $jugMod = jugadorPorDNI($conex, $_POST["dniBus"]);
-
-
+    $jugMod = jugadorPorDNI($conex, $_POST["dni"]);
+    echo "Pulsado jugador: $jugMod->nombre <br><br>";
 
 ?>
     <div class="formulario">
