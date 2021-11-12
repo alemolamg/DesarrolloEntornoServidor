@@ -84,3 +84,32 @@ function verifViaje($query)
         return false;
     }
 }
+
+function verifPlazas($conx, $fecha, $origen, $destino, $numPlazas)
+{
+    $sql = "SELECT * FROM viajes WHERE `Fecha` = '$fecha' AND `Origen` = '$origen' AND `Destino` = '$destino' AND '$numPlazas' <= `Plazas_libres` LIMIT 1;";
+    $result = $conx->query($sql);
+    if ($conx->errorCode() != 0) {
+        print_r($conx->errorInfo());
+        return false;
+        die("ERROR");
+    }
+
+    return $result->fetch();
+}
+
+function actPlazas($conx, $fecha, $origen, $destino, $numPlazas)
+{
+    $sql = "UPDATE viajes SET Plazas_libres = '$numPlazas' WHERE `Fecha` = '$fecha' AND `Origen` = '$origen' AND `Destino` = '$destino'";
+    $ok = true;
+    if ($conx->exec($sql) == 0) {
+        $ok = false;
+    }
+
+    if ($ok) {
+        $conx->commit();
+    } else {
+        echo $conx->errorInfo();
+        $conx->rollBack();
+    }
+}
