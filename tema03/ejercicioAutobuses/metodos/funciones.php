@@ -94,22 +94,19 @@ function verifPlazas($conx, $fecha, $origen, $destino, $numPlazas)
         return false;
         die("ERROR");
     }
-
+    //echo "VERIFICAR FUNCIONA";
     return $result->fetch();
 }
 
-function actPlazas($conx, $fecha, $origen, $destino, $numPlazas)
+function actPlazas($conx, $fecha, $origen, $destino, $newPlazas)
 {
-    $sql = "UPDATE viajes SET Plazas_libres = '$numPlazas' WHERE `Fecha` = '$fecha' AND `Origen` = '$origen' AND `Destino` = '$destino'";
-    $ok = true;
-    if ($conx->exec($sql) == 0) {
-        $ok = false;
+
+    $sql = "UPDATE viajes SET Plazas_libres = Plazas_libres - '$newPlazas' WHERE Fecha = '$fecha' AND Origen = '$origen' AND Destino = '$destino';";
+    if ($conx->exec($sql) === false) {
+        print_r($conx->errorInfo());
+        echo "0 FILAS AFECTADAS";
+        return false;
     }
 
-    if ($ok) {
-        $conx->commit();
-    } else {
-        echo $conx->errorInfo();
-        $conx->rollBack();
-    }
+    return true;
 }

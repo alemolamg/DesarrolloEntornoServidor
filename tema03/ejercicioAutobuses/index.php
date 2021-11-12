@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="bg-primary d-grid ">
             <h1 class="mx-3 text-white a"> <a href="index.php">Autobuses Alemol </a></h1>
         </div>
