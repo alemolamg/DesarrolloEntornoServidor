@@ -36,7 +36,7 @@ if (!isset($_POST['buscar'])) {
 } else {
     if (calcViaje($conexion, $_POST['fecha'], $_POST['origen'], $_POST['destino'])) {   // Entramos a reservar el Viaje
         //echo "<h1 style='color: green;'>Funciona totalmente, pasaremos al próximo paso</h1> <br>";
-        include("pagReserva.php");
+        include_once("pagReserva.php");
     } else {    // Pedimos que arreglen el formulario
     ?>
         <h3 style="color: red;">No existe ese viaje para esa fecha</h3>
