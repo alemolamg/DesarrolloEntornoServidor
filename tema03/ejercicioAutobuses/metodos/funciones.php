@@ -18,7 +18,7 @@ function muestraTexto($texto)
 function calcOrigen($conx)
 {
     $sql = "SELECT DISTINCT `Origen` FROM `viajes` ORDER BY `Origen`;";
-    echo "Texto inicio";
+    //echo "Texto inicio";
     $result = $conx->query($sql);
     if ($conx->errorCode() != 0) {
         print_r($conx->errorInfo());
