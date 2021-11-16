@@ -47,8 +47,8 @@ function mostrarProductosFamilia($conexion, $familia)
             echo $mensPro . "&nbsp";
             ?>
 
-            <input type="hidden" name='<?php echo $prod->cod; ?>' value='<?php echo $prod->cod; ?>'>
-            <input type="button" value="<?php echo $prod->cod; ?>" name="modificador">
+            <input type="hidden" name='codPro' value='<?php echo $prod->cod; ?>'>
+            <input type="button" value="Editar" name="editar">
         </form>
 <?php
         echo "<br>";
