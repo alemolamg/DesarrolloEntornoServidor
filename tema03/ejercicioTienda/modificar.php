@@ -2,7 +2,9 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Plantilla para Ejercicios Tema 3</title>
 	<link href="dwes.css" rel="stylesheet" type="text/css">
 </head>
@@ -16,7 +18,7 @@
 	</div>
 
 	<div id="contenido">
-		<h2>Contenido</h2>
+		<h2>Modificar Jugador</h2>
 
 	</div>
 
