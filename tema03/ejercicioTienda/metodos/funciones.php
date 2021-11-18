@@ -12,22 +12,16 @@ function conexionBD()
     return $dwes;
 }
 
-function selectorNomCorto($conexion)
+function selectorCodigo($conexion, $codigo)
 {
     //echo "entro selector Artúculos aquí!";
-    $productos = $conexion->query('select * from producto ORDER BY nombre_corto');
+    $productos = $conexion->query("select * from producto WHERE cod = '$codigo' LIMIT 1");
     if ($conexion->errorCode() != 0) {
         print_r($conexion->errorInfo());
         die("ERROR");
     }
-    while ($a = $productos->fetch()) {
-        if (isset($_POST['nomCorto'])) {
-            if ($_POST['nomCorto'] == $a)
-                $coinc =  'selected';
-        } else
-            $coinc = "";
-        echo "<option value='$a->cod' $coinc >$a->nombre_corto</option><br>";
-    }
+    $a = $productos->fetch();
+    return $a;
 }
 
 
@@ -41,21 +35,20 @@ function mostrarProductosFamilia($conexion, $familia)
     }
     while ($prod = $listaPro->fetch()) {
 ?>
-        <form action="modificar.php" method="POST">
+        <form action="./modificar.php" method="POST">
             <?php
             $mensPro = "Producto: $prod->nombre_corto , cod: $prod->cod -- PVP: $prod->PVP €";
             echo $mensPro . "&nbsp";
             ?>
-
             <input type="hidden" name='codPro' value='<?php echo $prod->cod; ?>'>
-            <input type="button" value="Editar" name="editar">
+            <input type="submit" value="Editar" name="editar">
         </form>
 <?php
         echo "<br>";
     }
 }
 
-function selectorFamilia($conexion)
+function selectorFamilia($conexion, $familia)
 {
     //echo "entro selector Artúculos aquí!";
     $productos = $conexion->query('select DISTINCT familia from producto ORDER BY familia');
@@ -66,12 +59,23 @@ function selectorFamilia($conexion)
     }
     while ($a = $productos->fetch()) {
         //if (isset($_POST['familia'])) {
-        if ($_POST['familia'] == $a->familia)
+        if ($familia == $a->familia)
             $coinc =  'selected';
         else
             $coinc = "";
         echo "<option value='$a->familia' $coinc >$a->familia</option><br>";
     }
+}
+
+function updateProducto($conexion, $codPro, $nombre, $nombreCorto, $descrip, $PVP, $familia)
+{
+    $sql = "UPDATE producto SET nombre = '$nombre', nombre_corto = '$nombreCorto', descripcion = '$descrip', PVP = '$PVP', familia = '$familia' WHERE cod = '$codPro' ";
+    if ($conexion->exec($sql) === false) {
+        print_r($conexion->errorInfo());
+        echo "0 FILAS AFECTADAS";
+        return false;
+    }
+    return true;
 }
 
 ?>

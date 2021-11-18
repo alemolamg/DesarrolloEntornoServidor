@@ -107,6 +107,5 @@ function actPlazas($conx, $fecha, $origen, $destino, $newPlazas)
         echo "0 FILAS AFECTADAS";
         return false;
     }
-
     return true;
 }

@@ -24,7 +24,7 @@ try {
 			<select name="familia" id="familia">
 				<?php
 				try {
-					selectorFamilia($conx);
+					selectorFamilia($conx, $_POST['familia']);
 				} catch (\Throwable $th) {
 					echo $th->getMessage() . '<br>';
 				}
