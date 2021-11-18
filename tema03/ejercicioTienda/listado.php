@@ -40,12 +40,9 @@ try {
 		if (isset($_POST['mostrar']) && isset($_POST['familia'])) {
 			mostrarProductosFamilia($conx, $_POST['familia']);
 		} else {
-			echo "BORRA ESTE MENSAJE";
+			echo "<h3>Elige arriba una familia</h3>";
 		}
-
 		?>
-
-
 	</div>
 	<div id="pie">
 	</div>
