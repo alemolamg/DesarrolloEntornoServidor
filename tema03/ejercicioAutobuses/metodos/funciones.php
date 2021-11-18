@@ -18,7 +18,7 @@ function muestraTexto($texto)
 function calcOrigen($conx)
 {
     $sql = "SELECT DISTINCT `Origen` FROM `viajes` ORDER BY `Origen`;";
-    echo "Texto inicio";
+    //echo "Texto inicio";
     $result = $conx->query($sql);
     if ($conx->errorCode() != 0) {
         print_r($conx->errorInfo());
@@ -83,4 +83,29 @@ function verifViaje($query)
     } else {
         return false;
     }
+}
+
+function verifPlazas($conx, $fecha, $origen, $destino, $numPlazas)
+{
+    $sql = "SELECT * FROM viajes WHERE `Fecha` = '$fecha' AND `Origen` = '$origen' AND `Destino` = '$destino' AND '$numPlazas' <= `Plazas_libres` LIMIT 1;";
+    $result = $conx->query($sql);
+    if ($conx->errorCode() != 0) {
+        print_r($conx->errorInfo());
+        return false;
+        die("ERROR");
+    }
+    //echo "VERIFICAR FUNCIONA";
+    return $result->fetch();
+}
+
+function actPlazas($conx, $fecha, $origen, $destino, $newPlazas)
+{
+
+    $sql = "UPDATE viajes SET Plazas_libres = Plazas_libres - '$newPlazas' WHERE Fecha = '$fecha' AND Origen = '$origen' AND Destino = '$destino';";
+    if ($conx->exec($sql) === false) {
+        print_r($conx->errorInfo());
+        echo "0 FILAS AFECTADAS";
+        return false;
+    }
+    return true;
 }
