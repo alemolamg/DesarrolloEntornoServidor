@@ -1,32 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-if (isset($_POST['enviar'])) {
-    $options = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ];
-    $dwes = new PDO('mysql:host=localhost; dbname=oficina; charset=utf8mb4', 'dwes', 'abc123.', $options);
-
-    if (isset($_POST['pass'])) {
-        $pass = md5($_POST['pass']);
-
-        $consulta = "SELECT * FROM empleados emp WHERE user = '$_POST[usuario]' AND pass = '$pass'";
-        $user = $dwes->query($consulta);
-
-        if ($user->rowCount()) {
-
-            if (isset($_POST['remember'])) {
-                setcookie("usuario", $_POST['usuario'], time() + 3600);
-                setcookie("contrasenia", $_POST['pass'], time() + 3600);
-                setcookie("recordar", $_POST['remember'], time() + 3600);
-            } else {
-                setcookie("usuario", $_POST['usuario']);
-            }
-            header("Location: index.php");
-        }
-    }
-}
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,6 +10,38 @@ if (isset($_POST['enviar'])) {
 </head>
 
 <body>
+    <?php
+    $error = false;
+    if (isset($_POST['entrar'])) {
+        $options = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ];
+        $dwes = new PDO('mysql:host=localhost; dbname=oficina; charset=utf8mb4', 'dwes', 'abc123.', $options);
+
+        //echo "<h1>me quedo fuera </h1>";
+        if (isset($_POST['pass'])) {
+            //echo "entro en la contraseña";
+            $pass = md5($_POST['pass']);
+
+            $consulta = "SELECT * FROM empleados emp WHERE user = '$_POST[usuario]' AND pass = '$pass'";
+            $user = $dwes->query($consulta);
+
+            if ($user->rowCount()) {
+
+                if (isset($_POST['remember'])) {
+                    setcookie("usuario", $_POST['usuario'], time() + 3600);
+                    setcookie("contrasenia", $_POST['pass'], time() + 3600);
+                    setcookie("recordar", $_POST['remember'], time() + 3600);
+                } else {
+                    setcookie("recordar", $_POST['remember'], time() - 3600);
+                    setcookie("usuario", $_POST['usuario'], time() + 1);
+                }
+                header('Location: inicio.php');
+            } else {
+                $error = true;
+            }
+        }
+    }
+    ?>
+
     <h1 class="text-center text-success">Iniciar Sesión</h1>
     <div class="container card py-2">
         <div class="card-body">
@@ -53,7 +59,10 @@ if (isset($_POST['enviar'])) {
                         <input class="form-check-input" type="checkbox" name="remember" value="<?php if (isset($_POST['remember'])) echo 'checked'; ?>"> Recuerdame
                     </label>
                 </div>
-                <button type="submit" class="btn btn-success">Entrar</button>
+                <?php if ($error) {
+                    echo "<h3 style='color: red'>ERROR. USUARIO O CONTRASEÑA INCORRECTA.</h3>";
+                } ?>
+                <button type="submit" name="entrar" class="btn btn-success">Entrar</button>
             </form>
         </div>
     </div>
