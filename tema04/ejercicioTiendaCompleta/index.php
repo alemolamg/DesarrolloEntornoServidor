@@ -1,10 +1,11 @@
 <?php
 /* Preguntar a Antonio*/
 session_start();
-if (!isset($_SESSION['usuario'])) {
+echo session_status();
+/*if (!isset($_SESSION['user'])) {
     header('Location: login.php');
-}
-
+} else {
+*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
@@ -15,7 +16,9 @@ http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-    <?php require_once("method/referencias.php"); ?>
+    <?php
+    require_once("method/referencias.php");
+    require_once("controllers/funciones.php"); ?>
 </head>
 
 <body class="pagproductos">
@@ -28,7 +31,8 @@ http://www.w3.org/TR/html4/loose.dtd">
             <div id="productos" class="col">
                 esto es una columna de productos
                 <?php
-                mostrarProductos($_SESSION["conx"]);
+                echo $_SESSION["user"];
+                //mostrarProductos($_SESSION["conex"]);
 
                 ?>
             </div>
@@ -62,10 +66,10 @@ http://www.w3.org/TR/html4/loose.dtd">
     </div>
 
 
-
-
-
-
 </body>
 
 </html>
+
+<?php
+//}
+?>

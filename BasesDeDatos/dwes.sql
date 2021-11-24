@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `dwes`
 --
 
+CREATE DATABASE IF NOT EXISTS dwes;
+USE dwes;
+
 -- --------------------------------------------------------
 
 --

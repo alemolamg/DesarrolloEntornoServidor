@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,15 +19,14 @@
         if (isset($_POST['pass'])) {
             $pass = md5($_POST['pass']);
 
-            $consulta = "SELECT * FROM empleados emp WHERE user = '$_POST[usuario]' AND pass = '$pass'";
+            $consulta = "SELECT * FROM empleados emp WHERE user = '$_POST[user]' AND pass = '$pass'";
             $user = $dwes->query($consulta);
 
             if ($user->rowCount()) {
-                session_start();
-                $_SESSION['usuario'] = $_POST['usuario'];
+                $_SESSION['user'] = $_POST['user'];
                 $_SESSION['conex'] = $dwes;
                 $_SESSION['pass'] = $_POST['pass'];
-                setcookie("usuario", $_POST['usuario'], time() + 3600);
+                setcookie("user", $_POST['user'], time() + 3600);
                 setcookie("contrasenia", $_POST['pass'], time() + 3600);
                 //setcookie("recordar", $_POST['remember'], time() + 3600);
                 header('Location: index.php');
@@ -42,19 +44,13 @@
         <div class="card-body">
             <form action="" method="POST">
                 <div class="mb-3 mt-3">
-                    <label for="usuario" class="form-label">Usuario:</label>
-                    <input type="text" class="form-control" id="usuario" placeholder="Nombre de usuario" name="usuario" value="<?php if (isset($_SESSION['usuario'])) echo $_SESSION['usuario']; ?>">
+                    <label for="user" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="user" placeholder="Nombre de usuario" name="user" value="<?php if (isset($_SESSION['user'])) echo $_SESSION['user']; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="pass" class="form-label">Contraseña:</label>
                     <input type="password" class="form-control" id="pass" placeholder="Introduce la contraseña" name="pass" value="<?php if (isset($_SESSION['pass'])) echo $_SESSION['pass']; ?>">
                 </div>
-                <!--<div class="form-check mb-3">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="remember" value="<?php //if (isset($_POST['remember'])) echo 'checked'; 
-                                                                                                ?>"> Recuerdame
-                    </label>
-                </div> -->
 
                 <button type="submit" name="entrar" class="btn btn-success">Entrar</button>
                 <?php if ($error) {
