@@ -24,8 +24,8 @@ session_start();
 
             if ($user->rowCount()) {
                 $_SESSION['user'] = $_POST['user'];
-                $_SESSION['conex'] = $dwes;
                 $_SESSION['pass'] = $_POST['pass'];
+                //$_SESSION["conex"] = serialize($dwes);
                 setcookie("user", $_POST['user'], time() + 3600);
                 setcookie("contrasenia", $_POST['pass'], time() + 3600);
                 //setcookie("recordar", $_POST['remember'], time() + 3600);

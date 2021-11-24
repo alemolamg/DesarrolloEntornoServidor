@@ -1,11 +1,15 @@
 <?php
 /* Preguntar a Antonio*/
 session_start();
-echo session_status();
+//echo session_status();
+require_once("controllers/funciones.php");
 /*if (!isset($_SESSION['user'])) {
     header('Location: login.php');
-} else {
-*/
+    //echo 'Si existe $_session[user]';
+} else {*/
+    $dwes = crearConexion();
+    //$dwes = unserialize($_SESSION["conex"]);
+//}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
@@ -16,9 +20,7 @@ http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-    <?php
-    require_once("method/referencias.php");
-    require_once("controllers/funciones.php"); ?>
+    <?php require_once("method/referencias.php"); ?>
 </head>
 
 <body class="pagproductos">
@@ -31,8 +33,10 @@ http://www.w3.org/TR/html4/loose.dtd">
             <div id="productos" class="col">
                 esto es una columna de productos
                 <?php
-                echo $_SESSION["user"];
+                echo $_SESSION["pass"];
+                //echo $_SESSION["conex"];
                 //mostrarProductos($_SESSION["conex"]);
+                mostrarProductos($dwes);
 
                 ?>
             </div>

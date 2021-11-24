@@ -8,11 +8,12 @@ function crearConexion()
 
 function mostrarProductos($conx)
 {
-    $sql = "SELECT * FROM productos ORDER BY nombre_corto";
+    echo "Entro en la funcion";
+    $sql = "SELECT * FROM producto ORDER BY nombre_corto";
     try {
         $listaPro = $conx->query($sql);
     } catch (\Throwable $th) {
-        //throw $th;
+        throw $th;
     }
     while ($prod = $listaPro->fetch()) {
 ?>
