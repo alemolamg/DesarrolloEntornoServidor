@@ -3,13 +3,16 @@
 session_start();
 //echo session_status();
 require_once("controllers/funciones.php");
-/*if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     //echo 'Si existe $_session[user]';
-} else {*/
-    $dwes = crearConexion();
-    //$dwes = unserialize($_SESSION["conex"]);
-//}
+}
+$dwes = crearConexion();
+
+if (isset($_POST['aniadir'])) {
+    aniadirElementoCesta($dwes, $_POST['codPro']);
+}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
@@ -31,11 +34,7 @@ http://www.w3.org/TR/html4/loose.dtd">
         <div class="row">
 
             <div id="productos" class="col">
-                esto es una columna de productos
                 <?php
-                echo $_SESSION["pass"];
-                //echo $_SESSION["conex"];
-                //mostrarProductos($_SESSION["conex"]);
                 mostrarProductos($dwes);
 
                 ?>
@@ -44,14 +43,14 @@ http://www.w3.org/TR/html4/loose.dtd">
                 <h3><img src="img/cesta.jpg" alt="Cesta" width="24" height="21">Cesta</h3>
                 <hr />
                 <?php
-
+                mostrarCesta();
 
                 ?>
                 <form action="" method="POST">
-                    <input type="submit" name="vaciar" value="Vaciar Cesta">
+                    <input type="submit" class="btn btn-success my-1" name="vaciar" value="Vaciar Cesta">
                 </form>
                 <form action="cesta.php" method="POST">
-                    <input type="submit" name="comprar" value="Comprar">
+                    <input type="submit" class="btn btn-success my-1" name="comprar" value="Comprar">
                 </form>
 
             </div>
