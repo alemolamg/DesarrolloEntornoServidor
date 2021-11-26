@@ -17,12 +17,15 @@ function mostrarProductos($conx)
     }
     while ($prod = $listaPro->fetch()) {
 ?>
-        <form action="." method="POST">
+        <form action="" method="POST">
             <?php
             $mensPro = "Producto: $prod->nombre_corto , cod: $prod->cod -- PVP: $prod->PVP €";
             echo $mensPro . "&nbsp";
             ?>
             <input type="hidden" name='codPro' value='<?php echo $prod->cod; ?>'>
+            <input type="hidden" name="PVP" value='<?php echo  $prod->PVP;  ?>'>
+            <input type="hidden" name="nombreCorto" value='<?php echo  $prod->nombre_corto;  ?>'>
+            <input type="hidden" name="descripcion" value='<?php echo  $prod->descripcion;  ?>'>
             <input type="submit" value="Añadir" name="aniadir" class="btn btn-success">
         </form>
 <?php
@@ -30,22 +33,14 @@ function mostrarProductos($conx)
     }
 }
 
-function aniadirElementoCesta($conx, $codigo)
+function aniadirElementoCesta($codigo, $nombreCorto, $PVP, $descrip)
 {
-    if (isset($_SESSION['cesta'])) {
-        $sql = "SELECT * FROM producto WHERE cod = $codigo LIMIT 1";
-        $productos = $conx->query();
-        if ($prod = $productos->rowCount()) {
-            if (isset($_SESSION['cesta'][$codigo])) {
-                $_SESSION['cesta'][$codigo]['cant']++; //cambiar si no aumenta por +=1
-            } else {
-                $array = array('cant' => 1, 'nombre_corto' => $prod->nombre_corto, 'PVP' => $prod->PVP);
-                $_SESSION['cesta'][$codigo] = $array;
-            }
-        }
+    //$sql = "SELECT * FROM producto WHERE cod = $codigo LIMIT 1";
+    if (isset($_SESSION['cesta'][$codigo])) {
+        $_SESSION['cesta'][$codigo]['cant']++; //cambiar si no aumenta por +=1
     } else {
-        $_SESSION['cesta'];
-        aniadirElementoCesta($conx, $codigo);
+        $array = array('cant' => 1, 'nombreCorto' => $nombreCorto, 'PVP' => $PVP, 'descripcion' => $descrip);
+        $_SESSION['cesta'][$codigo] = $array;
     }
 }
 
@@ -53,10 +48,30 @@ function mostrarCesta()
 {
     $mensPro = "";
     foreach ($_SESSION['cesta'] as $prod) {
-        //for ($i = 0; $i < count($prod); $i++) {
-        $mensPro = "Cantidad: " . $prod['cant'] . " Producto: " . $prod['nombre_corto'] . " -- PVP: " . $prod["PVP"] . " €";
-
-        echo $mensPro . "&nbsp";
-        //}
+        //echo "ENTRO EN MOSTRAR CESTA Y TIENE: " . $prod['nombreCorto'] . '------<br>';
+        $mensPro = "Cantidad: " . $prod['cant'] . " Producto: " . $prod['nombreCorto'] .
+            " -- PVP: " . $prod["PVP"] . " €";
+        echo $mensPro . "<br>";
     }
+}
+
+function vaciarCesta()
+{
+    unset($_SESSION['cesta']);
+}
+
+function mostrarTodoProducto($prod)
+{
+    $mensPro =  "<h4> Producto: " . $prod['nombreCorto'] . "</h4> <br> Cantidad: " . $prod['cant'] .
+        " -- PVP: " . $prod["PVP"] . " € -- <br> Descripcion: " . $prod['descripcion'] . "<br>";
+    echo $mensPro;
+}
+
+function precioTotal()
+{
+    $total = 0;
+    foreach ($_SESSION['cesta'] as $producto) {
+        $total += $producto['PVP'] * $producto['cant'];
+    }
+    return $total;
 }

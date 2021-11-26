@@ -1,5 +1,5 @@
 <?php
-/* Preguntar a Antonio*/
+
 session_start();
 //echo session_status();
 require_once("controllers/funciones.php");
@@ -10,8 +10,16 @@ if (!isset($_SESSION['user'])) {
 $dwes = crearConexion();
 
 if (isset($_POST['aniadir'])) {
-    aniadirElementoCesta($dwes, $_POST['codPro']);
+    //echo "Codigo Producto: " . $_POST['PVP'];
+    aniadirElementoCesta($_POST['codPro'], $_POST['nombreCorto'], $_POST['PVP'], $_POST['descripcion']);
+    unset($_POST["aniadir"]);
 }
+
+if (isset($_POST['vaciar'])) {
+    vaciarCesta();
+    unset($_POST["vaciar"]);
+}
+
 
 ?>
 
@@ -49,7 +57,7 @@ http://www.w3.org/TR/html4/loose.dtd">
                 <form action="" method="POST">
                     <input type="submit" class="btn btn-success my-1" name="vaciar" value="Vaciar Cesta">
                 </form>
-                <form action="cesta.php" method="POST">
+                <form action="comprar.php" method="POST">
                     <input type="submit" class="btn btn-success my-1" name="comprar" value="Comprar">
                 </form>
 
