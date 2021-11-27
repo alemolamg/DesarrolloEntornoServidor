@@ -46,12 +46,16 @@ function aniadirElementoCesta($codigo, $nombreCorto, $PVP, $descrip)
 
 function mostrarCesta()
 {
-    $mensPro = "";
-    foreach ($_SESSION['cesta'] as $prod) {
-        //echo "ENTRO EN MOSTRAR CESTA Y TIENE: " . $prod['nombreCorto'] . '------<br>';
-        $mensPro = "Cantidad: " . $prod['cant'] . " Producto: " . $prod['nombreCorto'] .
-            " -- PVP: " . $prod["PVP"] . " €";
-        echo $mensPro . "<br>";
+    if (isset($_SESSION['cesta'])) {
+        $mensPro = "";
+        foreach ($_SESSION['cesta'] as $prod) {
+            //echo "ENTRO EN MOSTRAR CESTA Y TIENE: " . $prod['nombreCorto'] . '------<br>';
+            $mensPro = "Cantidad: " . $prod['cant'] . " Producto: " . $prod['nombreCorto'] .
+                " -- PVP: " . $prod["PVP"] . " €";
+            echo $mensPro . "<br>";
+        }
+    } else {
+        echo "--- CESTA VACÍA ---";
     }
 }
 

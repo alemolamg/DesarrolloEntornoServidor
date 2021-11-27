@@ -52,14 +52,15 @@ http://www.w3.org/TR/html4/loose.dtd">
                 <hr />
                 <?php
                 mostrarCesta();
-
                 ?>
-                <form action="" method="POST">
-                    <input type="submit" class="btn btn-success my-1" name="vaciar" value="Vaciar Cesta">
-                </form>
-                <form action="comprar.php" method="POST">
-                    <input type="submit" class="btn btn-success my-1" name="comprar" value="Comprar">
-                </form>
+                <div class="row">
+                    <form action="" method="POST">
+                        <input type="submit" class="btn btn-success my-1" name="vaciar" value="Vaciar Cesta">
+                    </form>
+                    <form action="comprar.php" method="POST">
+                        <input type="submit" class="btn btn-success my-1" name="comprar" value="Comprar">
+                    </form>
+                </div>
 
             </div>
             <br class="divisor" />
