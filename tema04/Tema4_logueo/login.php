@@ -25,10 +25,6 @@ session_start();
             if ($user->rowCount()) {
                 $_SESSION['user'] = $_POST['user'];
                 $_SESSION['pass'] = $_POST['pass'];
-                //$_SESSION["conex"] = serialize($dwes);
-                setcookie("user", $_POST['user'], time() + 3600);
-                setcookie("contrasenia", $_POST['pass'], time() + 3600);
-                //setcookie("recordar", $_POST['remember'], time() + 3600);
                 header('Location: index.php');
             } else {
                 $error = true;
@@ -36,6 +32,9 @@ session_start();
         } else {
             echo "da error";
         }
+    }
+    if (isset($_POST['registro'])) {
+        header('Location: registro.php');
     }
     ?>
 
@@ -53,6 +52,7 @@ session_start();
                 </div>
 
                 <button type="submit" name="entrar" class="btn btn-success">Entrar</button>
+                <button type="submit" name="registro" class="btn btn-success">Registrarse</button>
                 <?php if ($error) {
                     echo "<h3 class='error pt-3' style='color:red'>ERROR. USUARIO O CONTRASEÑA INCORRECTA.</h3>";
                 } ?>
