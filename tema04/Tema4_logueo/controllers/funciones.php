@@ -10,6 +10,17 @@ function nuevoUser($conx, $user, $pass, $nombre, $apel, $loc, $direc, $colorText
 {
     $sql = "UPDATE empleados SET user = '$user', pass = '$pass', nombre = '$nombre', apellidos = '$apel',
     colorFondo='$colorFondo', colorLetra='$colorText',tamTexto='$tamText', tipoTexto='$tipoText'";
+
+    if ($conx->exec($sql) == 0) {
+        $ok = false;
+    }
+
+    if ($ok) {
+        $conx->commit();
+    } else {
+        echo $conx->errorInfo();
+        $conx->rollBack();
+    }
 }
 
 

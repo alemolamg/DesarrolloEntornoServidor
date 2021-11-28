@@ -18,7 +18,7 @@ if (isset($_POST['guardar'])) {
 </head>
 
 <body>
-    <h1 class="text-center p-3 text-white bg-success">Iniciar Sesión</h1>
+    <h1 class="text-center p-3 text-white bg-success">Registro</h1>
     <div class="container card py-3">
         <div class="card-body">
             <form action="" method="POST">
