@@ -8,8 +8,10 @@ function crearConexion()
 
 function nuevoUser($conx, $user, $pass, $nombre, $apel, $loc, $direc, $colorText, $colorFondo, $tipoText, $tamText)
 {
-    $sql = "UPDATE empleados SET user = '$user', pass = '$pass', nombre = '$nombre', apellidos = '$apel',
-    colorFondo='$colorFondo', colorLetra='$colorText',tamTexto='$tamText', tipoTexto='$tipoText'";
+    //$sql = "UPDATE empleados SET user = '$user', pass = '$pass', nombre = '$nombre', apellidos = '$apel',
+    //colorFondo='$colorFondo', colorLetra='$colorText',tamTexto='$tamText', tipoTexto='$tipoText'";
+    $sql = "INSERT INTO empleados (user,pass,nombre,apellidos,colorFondo,colorLetra,tamTexto,tipoTexto,direccion,localidad) 
+        VALUES $user,$pass,$nombre,$apel,$colorFondo,$colorText,$tamText.$tipoText,$direc,$loc";
 
     if ($conx->exec($sql) == 0) {
         $ok = false;

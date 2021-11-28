@@ -6,6 +6,10 @@ if (isset($_POST['volver'])) {
 
 if (isset($_POST['guardar'])) {
     $conx = crearConexion();
+    if (isset($_POST['user'])) {
+        //$_POST['user'],$_POST['pass'],$_POST['nombre'], $_POST['apellidos'],$_POST['local'],$_POST['direc'],
+        //$_POST['tipoLetra']
+    }
 }
 
 ?>
@@ -50,11 +54,12 @@ if (isset($_POST['guardar'])) {
                     <label for="loca" class="form-label">Colores:</label>
                     <div class="row">
                         <div class="col">
-                            Color fondo: <input type="color" class="form-control-color" name="color Fondo" id="" value="#2878C8">
+                            Color fondo: <input type="color" class="form-control-color" name="colorFondo" id="" value="#2878C8">
                         </div>
                         <div class="col">
-                            Color Letra: <input type="color" class="form-control-color" name="color Fondo" id="" value="#FFFFFF">
+                            Color Letra: <input type="color" class="form-control-color" name="colorLetra" id="" value="#FFFFFF">
                         </div>
+                        <br>
                     </div>
                     Tipo Letra: <select name="tipoLetra" class="form-control form-select" id=""></select>
                     Tamaño Letra: <select name="tamLetra" class="form-control form-select" id=""></select>
