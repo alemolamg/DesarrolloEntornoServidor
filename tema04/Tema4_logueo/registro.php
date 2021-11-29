@@ -6,9 +6,10 @@ if (isset($_POST['volver'])) {
 
 if (isset($_POST['guardar'])) {
     $conx = crearConexion();
-    if (isset($_POST['user'])) {
-        //$_POST['user'],$_POST['pass'],$_POST['nombre'], $_POST['apellidos'],$_POST['local'],$_POST['direc'],
-        //$_POST['tipoLetra']
+    if (isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['local']) && isset($_POST['direc']) && isset($_POST['colorLetra']) && isset($_POST['colorFondo']) && isset($_POST['tipoLetra']) && isset($_POST['tamLetra'])) {
+        nuevoUser($conx, $_POST['user'], $_POST['pass'], $_POST['nombre'], $_POST['apellidos'], $_POST['local'], $_POST['direc'],  $_POST['colorLetra'], $_POST['colorFondo'], $_POST['tipoLetra'], $_POST['tamLetra']);
+    } else {
+        $error = true;
     }
 }
 
@@ -28,15 +29,15 @@ if (isset($_POST['guardar'])) {
             <form action="" method="POST">
                 <div class="mb-3 mt-3">
                     <label for="user" class="form-label">Usuario:</label>
-                    <input type="text" class="form-control" id="user" placeholder="Nombre de usuario" name="user" value="<?php if (isset($_SESSION['user'])) echo $_SESSION['user']; ?>">
+                    <input type="text" class="form-control" id="user" placeholder="Nombre de usuario" name="user" value="<?php if (isset($_POST['user'])) echo $_POST['user']; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="pass" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="pass" placeholder="Introduce la contraseña" name="pass" value="<?php if (isset($_SESSION['pass'])) echo $_SESSION['pass']; ?>">
+                    <input type="password" class="form-control" id="pass" placeholder="Introduce la contraseña" name="pass" value="<?php if (isset($_POST['pass'])) echo $_POST['pass']; ?>">
                 </div>
                 <div class="mb-3 mt-3 ">
                     <label for="nombre apel" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" value="<?php if (isset($_POST['nombre'])) echo $_POST['nombre']; ?>">
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="apel" class="form-label">Apellidos:</label>
@@ -61,15 +62,19 @@ if (isset($_POST['guardar'])) {
                         </div>
                         <br>
                     </div>
-                    Tipo Letra: <select name="tipoLetra" class="form-control form-select" id=""></select>
-                    Tamaño Letra: <select name="tamLetra" class="form-control form-select" id=""></select>
+                    Tipo Letra: <select name="tipoLetra" class="form-control form-select" id="">
+                        <option value="NewTimesRoma">New Times Roma</option>
+                    </select>
+                    Tamaño Letra: <select name="tamLetra" class="form-control form-select" id="">
+                        <?php rellenarTamLetra() ?>
+                    </select>
 
                 </div>
 
                 <button type="submit" name="guardar" class="btn btn-success">Guardar Usuario</button>
                 <button type="submit" name="volver" class="btn btn-success">Volver</button>
                 <?php if ($error) {
-                    echo "<h3 class='error pt-3' style='color:red'>ERROR. USUARIO O CONTRASEÑA INCORRECTA.</h3>";
+                    echo "<h3 class='error pt-3' style='color:red'>ERROR. LOS DATOS SON INCORRECTOS.</h3>";
                 } ?>
             </form>
         </div>
