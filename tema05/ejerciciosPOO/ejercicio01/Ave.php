@@ -2,7 +2,7 @@
 require_once 'Animal.php';
 class Ave extends Animal
 {
-    const IMG = 'https://okdiario.com/img/2021/10/17/philipp-pilz-id48ekbtldo-unsplash11.jpg';
+    const IMG = './images/aguila.jpg';
     public $terrestre = false; //True si lo son, false si no.
     function __construct($esp, $alimentacion, $imagen = Ave::IMG)
     {
