@@ -4,8 +4,11 @@ class Ave extends Animal
 {
     const IMG = './images/aguila.jpg';
     public $terrestre = false; //True si lo son, false si no.
-    function __construct($esp, $alimentacion, $imagen = Ave::IMG)
+    public $nombre;
+
+    function __construct($nombre, $esp, $alimentacion, $imagen = Ave::IMG)
     {
+        $this->nombre = $nombre;
         $this->especie = $esp;
         $this->numPatas = 2;
         $this->alimentacion = $alimentacion;
@@ -23,5 +26,16 @@ class Ave extends Animal
     {
         $video = 'https://www.youtube.com/watch?v=CFPQJULtjBQ';
         return $video;
+    }
+
+    function darFunciones()
+    {
+?>
+        <form action="" method="post">
+            <input type="hidden" name="video" value="<?php echo $this->volar(); ?>">
+            <input type="hidden" name="Ave">
+            <button name="audio">Reproducir audio </button>
+        </form>
+<?php
     }
 }

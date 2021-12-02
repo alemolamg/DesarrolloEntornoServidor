@@ -4,16 +4,17 @@ require_once('./Animal.php');
 class Lagarto extends Animal
 {
     const IMAGEN = 'https://static1.abc.es/media/201011/11/lagarto--478x270.jpg';
-    private $edad;
-    private $nombre;
-    private $sonido;
-    private $especie;
-    private $numPatas;
-    private $alimentacion;
-    private $imagen;
-    private $terrestre;
+    const IMG = './images/lagarto.jpg';
+    protected $edad;
+    protected $nombre;
+    protected $sonido;
+    protected $especie;
+    protected $numPatas;
+    protected $alimentacion;
+    protected $imagen;
+    protected $terrestre;
 
-    function __construct($nombre, $edad, $esp, $numPatas, $alimentacion, $imagen = Lagarto::IMAGEN)
+    function __construct($nombre, $edad, $esp, $numPatas, $alimentacion, $imagen = self::IMG)
     {
         $this->nombre = $nombre;
         $this->edad = $edad;
@@ -28,6 +29,11 @@ class Lagarto extends Animal
     {
         return "Especie: " . $this->especie . " ,Alimentación: " . $this->alimentacion .
             " ,Nº Patas: $this->numPatas ";
+    }
+
+    function getImagen()
+    {
+        return $this->imagen;
     }
 
     function ladrar()

@@ -2,12 +2,19 @@
 
 abstract class Animal
 {
-    private $especie;
-    private $imagen;
-    private $numPatas;
-    private $alimentacion;
+    protected $especie;
+    protected $imagen;
+    protected $numPatas;
+    protected $alimentacion;
 
     abstract function __toString();
+
+    function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    //abstract function darFunciones();
 
     public function __get($name)
     {
