@@ -1,9 +1,9 @@
 <?php
 require_once 'Animal.php';
-class Ave extends Animal
+class Pinguino extends Ave
 {
     const IMG = './images/aguila.jpg';
-    public $terrestre = false; //True si lo son, false si no.
+    public $terrestre = true; //True si lo son, false si no.
     function __construct($esp, $alimentacion, $imagen = Ave::IMG)
     {
         $this->especie = $esp;
@@ -19,9 +19,13 @@ class Ave extends Animal
             " ,Nº Patas: $this->numPatas " . " ,Terrestre: " . $this->terrestre;
     }
 
+    function nadar()
+    {
+        return "El pingüino si sabe nadar, pero no vuela.";
+    }
+
     function volar()
     {
-        $video = 'https://www.youtube.com/watch?v=CFPQJULtjBQ';
-        return $video;
+        return 'Los pingüinos no vuelan lo siento, pero si nadan.';
     }
 }

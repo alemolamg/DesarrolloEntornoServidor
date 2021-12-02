@@ -6,6 +6,7 @@ class Perro extends Mamifero
     public $edad;
     public $nombre;
     public $colorPelo;
+    private $sonido;
 
     function __construct($nombre, $edad, $colorPelo, $esp, $numPatas, $alimentacion, $imagen = mamifero::IMG)
     {
@@ -18,5 +19,10 @@ class Perro extends Mamifero
     function __toString()
     {
         parent::__toString();
+    }
+
+    function ladrar()
+    {
+        return $this->sonido;
     }
 }
