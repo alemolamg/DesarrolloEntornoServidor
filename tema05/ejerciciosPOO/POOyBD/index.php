@@ -13,17 +13,26 @@
     <?php
     require_once 'Producto.php';
     $p = new Producto();
-    $p->nuevoP(4, "mochila", 12);
+    $p->nuevoP(5, "Chaqueta", 100);
     $error = $p->insertar();
     if ($error) {
         //echo $error;
-        if ($error == 1062){
+        if ($error == 1062) {
             echo " El producto ya existe en la base de datos, inserta otro.";
         }
     } else {
         echo 'Producto insertado correctamente.';
     }
 
+    $p1 = Producto::buscarProducto(1);
+    echo "<br>" . $p1 . "<br>";
+
+    $productos = Producto::recuperarTodos();
+    foreach ($productos as $obj) {
+    echo "<br>Codigo: " . $obj->getCodigo() . ", Nombre: " . $obj->getNombre() . ", Precio: " . $obj->getPrecio() ."<br>";
+    echo "<br> =================================================== <br>";
+}
+    
     ?>
 
 
