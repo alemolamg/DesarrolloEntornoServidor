@@ -15,7 +15,6 @@ class Conexion extends mysqli
         }
     }
 
-
     public function getHost()
     {
         return $this->host;
