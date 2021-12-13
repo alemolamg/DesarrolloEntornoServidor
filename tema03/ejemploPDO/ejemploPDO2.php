@@ -30,4 +30,3 @@
     } catch (PDOException $ex) {
         echo 'ERROR: ' . $ex->getMessage();
 }
-?>
