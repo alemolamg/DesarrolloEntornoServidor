@@ -3,6 +3,38 @@ require_once '../Controllers/Conexion.php';
 require_once '../Models/Juego.php';
 class JuegoController
 {
+    /**
+     * Recupera un juego dado su código
+     */
+    private static function recuperarJuego($cod)
+    {
+        $sql = "SELECT * FROM juegos WHERE codigo = '$cod'";
+        $conex = new Conexion();
+        $result = $conex->query($sql);
+        if ($conex->errorCode() != 0) {
+            print_r($conex->errorInfo());
+            die("ERROR");
+        }
+
+        if ($result->rowCount()) {
+            $j = new Juego('Juego Beta', "PC", 5, "kk.jpg");
+            while ($fila = $result->fetch()) {
+                $j->nuevoJuego(
+                    $fila->Codigo,
+                    $fila->Nombre_juego,
+                    $fila->Nombre_consola,
+                    $fila->Anno,
+                    $fila->Precio,
+                    $fila->Alquilado,
+                    $fila->Imagen
+                );
+            }
+            return $j;
+        } else {
+            return FALSE;
+        }
+    }
+
     private static function recuperarTodos()
     {
         $sql = "SELECT * FROM juegos ORDER BY codigo";
@@ -42,17 +74,21 @@ class JuegoController
             $contador = 0;
             foreach ($juegos as $juego) {
 ?>
-                <div class="col-lg-4 col-8">
-                    <div class="card">
-                        <div class="d-flex justify-content-center">
-                            <img class="card-img-top" src="../<?php echo $juego->getImagen(); ?>" style="max-width: 300px;" alt="Card image">
+                <div class="col-lg-3 col-8 my-2">
+                    <form action="" method="get">
+                        <input type="hidden" name="codJuego" value="<?php echo $juego->getCodigo(); ?>">
+                        <div class="card" style="cursor: pointer" onclick="location.href='#'">
+                            <div class="d-flex justify-content-center">
+                                <img class="card-img-top img-fluid m-1" src="../<?php echo $juego->getImagen(); ?>" style="max-height: 220px; width: auto;" alt="Card image">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $juego->getNombreJuego();  ?></h4>
+                                <!-- <p class="card-text"><?php echo $juego->getImagen(); ?></p> -->
+                                <input type="submit" value="Ver Juego" class="btn btn-primary ">
+                                <!-- <a href="#" class="btn btn-primary">Ver juego</a> -->
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title"><?php echo $juego->getNombreJuego();  ?></h4>
-                            <p class="card-text"><?php echo $juego->getImagen(); ?></p>
-                            <a href="#" class="btn btn-primary">Ver juego</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 <?php
             }
