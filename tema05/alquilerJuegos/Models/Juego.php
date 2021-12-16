@@ -2,6 +2,8 @@
 
 class Juego
 {
+    public static $ALQUILADO = 1;
+    public static $NO_ALQUILADO = 0;
     private $codigo;
     private $nombreJuego;
     private $nombreConsola;
@@ -22,7 +24,7 @@ class Juego
         $this->codigo = $this->generarCod();
     }
 
-    public function nuevoJuego($cod, $nombreJuego, $nombreCons, $anno, $precio, $alqu, $img,$descrip)
+    public function nuevoJuego($cod, $nombreJuego, $nombreCons, $anno, $precio, $alqu, $img, $descrip)
     {
         $this->codigo = $cod;
         $this->nombreJuego = $nombreJuego;

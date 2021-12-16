@@ -5,6 +5,9 @@ if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     //echo 'No existe $_session[user]';
 }
+if (!isset($_POST['codJuego'])) {
+    header('Location: index.php');
+}
 require_once '../Controllers/JuegoController.php';
 ?>
 <!DOCTYPE html>
@@ -20,7 +23,7 @@ require_once '../Controllers/JuegoController.php';
     $juego = JuegoController::recuperarJuego($_POST['codJuego']); //Debería funcionar
     ?>
 
-    <div id="Juego" class="mt-5">
+    <div id="Juego" class="mt-5 pt-2 pb-2 bg-warning">
         <div class="row flex-wrap">
             <div class="mt-2 col-lg-4">
                 <div id="img" class="d-flex justify-content-center">
@@ -32,14 +35,17 @@ require_once '../Controllers/JuegoController.php';
                 <p>Año Lanzamiento: <?php echo $juego->getAnno();  ?></p>
                 <h2>Descripción</h2>
                 <p class="text-justify">Esto es la descripcion del juego. <?php echo $juego->getDescrip();  ?></p>
-            <!-- </div>
-            <div class="mt-2 col-lg-3"> -->
+                <!-- </div>
+                <div class="mt-2 col-lg-3"> -->
                 <h2>Precio: <?php echo $juego->getPrecio(); ?>€ </h2>
-                <p>está alquilado el juego ? <?php echo $juego->getAlquilado(); ?> --BORRAME LUEGO</p>
-                <?php if($juego->getAlquilado() == false){ ?>
-                <input type="submit" value="alquilado" name="alquilado" class="btn btn-danger" /> 
+                <!-- <p>está alquilado el juego ? <?php //echo $juego->getAlquilado(); 
+                                                    ?> --BORRAME LUEGO</p> -->
+                <?php if ($juego->getAlquilado() == Juego::$ALQUILADO) { ?>
+                    <input type="submit" value="alquilado" name="alquilado" class="btn btn-danger" disabled />
                 <?php } else { ?>
-                <input type="submit" value="Alquilar" class="btn btn-primary">
+                    <form action="" method="post">
+                        <input type="submit" value="Alquilar" class="btn btn-primary" name="alquilar">
+                    </form>
                 <?php } ?>
             </div>
         </div>

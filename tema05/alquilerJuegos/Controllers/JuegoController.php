@@ -79,13 +79,15 @@ class JuegoController
                 <div class="col-md-4 col-lg-3 col-8 my-2">
                     <form action="../View/vistaJuego.php" method="post">
                         <input type="hidden" name="codJuego" value="<?php echo $juego->getCodigo(); ?>">
-                        <div class="card" style="cursor: pointer" onclick="location.href='#'"> <!-- Cambiar por funcion js -->
+                        <!-- <div class="card" style="cursor: pointer" onclick="location.href='#'"> <!-- Cambiar por funcion js -->
+                        <div class="card">
                             <div class="d-flex justify-content-center">
                                 <img class="card-img-top img-fluid m-1" src="../<?php echo $juego->getImagen(); ?>" style="max-height: 220px; width: auto;" alt="Card image">
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $juego->getNombreJuego();  ?></h4>
-                                <p class="card-text"><?php echo $juego->getCodigo(); ?></p>
+                                <!-- <p class="card-text"><?php //echo $juego->getCodigo(); 
+                                                            ?></p> -->
                                 <input type="submit" value="Ver Juego" class="btn btn-primary ">
                                 <!-- <a href="#" class="btn btn-primary">Ver juego</a> -->
                             </div>

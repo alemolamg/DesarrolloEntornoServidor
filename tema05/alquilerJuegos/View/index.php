@@ -19,7 +19,8 @@ require_once '../Controllers/JuegoController.php';
     <?php require_once('../method/navbar.php'); ?>
 
     <div id="ListaJuegos" class="container-fluid mt-5 p-0 pb-5 p-lg-4">
-        <div id="filaJuegos" class="row justify-content-center">
+        <h2>Usuario: <?php echo $_SESSION['user']; ?></h2> <!<!-- Muestra el dni del usuario -->
+        <div id="filaJuegos" class="row justify-content-center bg-warning mx-1">
             <?php
             JuegoController::mostrarJuegosPantalla();
             ?>
