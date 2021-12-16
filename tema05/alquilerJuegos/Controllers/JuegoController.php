@@ -76,10 +76,10 @@ class JuegoController
             $contador = 0;
             foreach ($juegos as $juego) {
 ?>
-                <div class="col-lg-3 col-8 my-2">
+                <div class="col-md-4 col-lg-3 col-8 my-2">
                     <form action="../View/vistaJuego.php" method="post">
                         <input type="hidden" name="codJuego" value="<?php echo $juego->getCodigo(); ?>">
-                        <div class="card" style="cursor: pointer" onclick="location.href='#'">
+                        <div class="card" style="cursor: pointer" onclick="location.href='#'"> <!-- Cambiar por funcion js -->
                             <div class="d-flex justify-content-center">
                                 <img class="card-img-top img-fluid m-1" src="../<?php echo $juego->getImagen(); ?>" style="max-height: 220px; width: auto;" alt="Card image">
                             </div>

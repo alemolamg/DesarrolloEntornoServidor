@@ -23,7 +23,7 @@ require_once '../Controllers/JuegoController.php';
     <div id="Juego" class="mt-5">
         <div class="row flex-wrap">
             <div class="mt-2 col-lg-4">
-                <div id="img">
+                <div id="img" class="d-flex justify-content-center">
                     <img class="img-fluid m-1" src="../<?php echo $juego->getImagen(); ?>" style="max-height: 420px; width: auto;" alt="Card image">
                 </div>
             </div>
