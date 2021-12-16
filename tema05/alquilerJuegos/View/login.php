@@ -44,8 +44,8 @@ session_start();
         <div class="card-body">
             <form action="" method="POST">
                 <div class="mb-3 mt-3">
-                    <label for="user" class="form-label">Usuario:</label>
-                    <input type="text" class="form-control" id="user" placeholder="Nombre de usuario" name="user" value="<?php if (isset($_SESSION['user'])) echo $_SESSION['user']; ?>">
+                    <label for="user" class="form-label">DNI:</label>
+                    <input type="text" class="form-control" id="user" placeholder="DNI de usuario" name="user" value="<?php if (isset($_SESSION['user'])) echo $_SESSION['user']; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="pass" class="form-label">Contraseña:</label>

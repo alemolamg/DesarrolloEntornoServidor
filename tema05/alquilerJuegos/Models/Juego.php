@@ -22,7 +22,7 @@ class Juego
         $this->codigo = $this->generarCod();
     }
 
-    public function nuevoJuego($cod, $nombreJuego, $nombreCons, $anno, $precio, $alqu, $img)
+    public function nuevoJuego($cod, $nombreJuego, $nombreCons, $anno, $precio, $alqu, $img,$descrip)
     {
         $this->codigo = $cod;
         $this->nombreJuego = $nombreJuego;
@@ -31,6 +31,7 @@ class Juego
         $this->precio = $precio;
         $this->alquilado = $alqu;
         $this->imagen = $img;
+        $this->descrip = $descrip;
     }
 
     /**

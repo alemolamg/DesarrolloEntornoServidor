@@ -6,7 +6,7 @@ class JuegoController
     /**
      * Recupera un juego dado su código
      */
-    private static function recuperarJuego($cod)
+    public static function recuperarJuego($cod)
     {
         $sql = "SELECT * FROM juegos WHERE codigo = '$cod'";
         $conex = new Conexion();
@@ -17,25 +17,26 @@ class JuegoController
         }
 
         if ($result->rowCount()) {
-            $j = new Juego('Juego Beta', "PC", 5, "kk.jpg");
+            $juego = new Juego('Juego Beta', "PC", 5, "kk.jpg");
             while ($fila = $result->fetch()) {
-                $j->nuevoJuego(
+                $juego->nuevoJuego(
                     $fila->Codigo,
                     $fila->Nombre_juego,
                     $fila->Nombre_consola,
                     $fila->Anno,
                     $fila->Precio,
                     $fila->Alquilado,
-                    $fila->Imagen
+                    $fila->Imagen,
+                    $fila->descripcion
                 );
             }
-            return $j;
+            return $juego;
         } else {
             return FALSE;
         }
     }
 
-    private static function recuperarTodos()
+    public static function recuperarTodos()
     {
         $sql = "SELECT * FROM juegos ORDER BY codigo";
         $conex = new Conexion();
@@ -55,7 +56,8 @@ class JuegoController
                     $fila->Anno,
                     $fila->Precio,
                     $fila->Alquilado,
-                    $fila->Imagen
+                    $fila->Imagen,
+                    $fila->descripcion
                 );
                 $listaJuegos[] = clone ($j);
             }
@@ -75,7 +77,7 @@ class JuegoController
             foreach ($juegos as $juego) {
 ?>
                 <div class="col-lg-3 col-8 my-2">
-                    <form action="" method="get">
+                    <form action="../View/vistaJuego.php" method="post">
                         <input type="hidden" name="codJuego" value="<?php echo $juego->getCodigo(); ?>">
                         <div class="card" style="cursor: pointer" onclick="location.href='#'">
                             <div class="d-flex justify-content-center">
@@ -83,7 +85,7 @@ class JuegoController
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $juego->getNombreJuego();  ?></h4>
-                                <!-- <p class="card-text"><?php echo $juego->getImagen(); ?></p> -->
+                                <p class="card-text"><?php echo $juego->getCodigo(); ?></p>
                                 <input type="submit" value="Ver Juego" class="btn btn-primary ">
                                 <!-- <a href="#" class="btn btn-primary">Ver juego</a> -->
                             </div>
