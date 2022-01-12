@@ -1,7 +1,12 @@
 <?php
+class Cliente{
+     private $_soapClient = null;
+    //private $conexDB = null;
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+    public function __construct() {
+        $this->_soapClient = new nusoap_client("http://localhost/DesarrolloEntornoServidor/tema06/serviciosSOAP/Tarea6/Server.php?wsdl");
+        //$this->conexDB = new Conexion();
+    }
+}
 
+?>
