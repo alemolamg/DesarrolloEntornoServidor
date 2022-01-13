@@ -51,7 +51,7 @@ class Funciones {
     }
 
     public function getFamilias() {
-        $familias;
+        $familias = [];
         $sql = "SELECT * FROM familia;";
         $conex = new Conexion();    //Creamos la conexión
         $result = $conex->query($sql);
@@ -63,9 +63,11 @@ class Funciones {
 
         if ($result->rowCount()) {
             while ($fila = $result->fetch()){
-            
-             $fila->unidades;
+                $familias = array($fila->cod => $fila->nombre);
+                //array_push($familias,($fila->cod => $fila->nombre));
+                //$fila->unidades;
             }
+            return $familias;
         }
         
     }

@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <h1>Esto es un título</h1>
+    <p>Texto de prueba</p>
 
 </body>
 
