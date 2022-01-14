@@ -19,7 +19,7 @@
         <form action="" method="post" class="form-control">
             <label for="numero">Número: </label>
             <input type="number" name="numero" id="numero" placeholder="Ej: 20418">
-            <input type="submit" value="Buscar">
+            <input type="submit" value="Buscar" class="btn btn-primary">
         </form>
         <?php
         function calcularDecimo($numUsu, $datosJSON)
@@ -40,7 +40,6 @@
                 echo "<h3 style='color: red'> ERROR EN EL NÚMERO</h3>";
             }
         }
-
 
         if (isset($_POST['numero'])) {
         ?>
