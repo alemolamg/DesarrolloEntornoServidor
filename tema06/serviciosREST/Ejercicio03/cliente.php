@@ -11,7 +11,7 @@
     <body>
         <div id="principal">
             <h1>Calcula tu Cambio de Divisas</h1>
-            <form action="." method="post">
+            <form action="./cliente.php" method="post">
                 <label for="cantidad">Moneda Principal: </label>
                 <input type="number" name="cantidad" id="cantidad">
                 <select name="tipoPrincipal" id="tipoPrincipal">
@@ -36,7 +36,7 @@
         <?php
         if (isset($_POST['enviar'])) {
             echo "<h2>Calculo del cambio:</h2>";
-            $datos = file_get_contents("http://localhost/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[monedaPrincipal]&dest=$_POST[tipoPrincipal]&cant=$_POST[cantidad]");
+            $datos = file_get_contents("https://localhost/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]");
             //$datos = explode("=", $datos, PHP_INT_MAX); // Divido el string en dos partes
             //$datos = $datos[1];     // Me quedo con la parte codificada en JSON
             echo '$datos';
