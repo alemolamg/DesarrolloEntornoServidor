@@ -1,8 +1,8 @@
 <?php
 // Defino las variables con el valor de cada moneda
-define('EURO', 'EURO');
-define('DOLAR', 'DOLAR');
-define('LIBRA', 'LIBRA');
+define('EURO', 'euro');
+define('DOLAR', 'dolar');
+define('LIBRA', 'libra');
 define('EUROtoDOLAR', 1.14);
 define('EUROtoLIBRA', 0.83);
 define('DOLARtoLIBRA', 0.73);
@@ -15,17 +15,18 @@ $divisaDestino = $_GET['dest']; //divisa de destino
 $cantidad = $_GET['cant'];      //cantidad a cambiar
 
 $cambio = cambiarMoneda($divisaOrigen, $divisaDestino, $cantidad);
-if($cambio != 'error'){
+if ($cambio != 'error') {
     echo json_encode($cambio);
 } else
-    echo $cambio;
+    echo json_encode("$cambio");
 
 
 //echo json_encode($kk);
 
-function cambiarMoneda($divisaOrig, $divisaDest, $cant) {
+function cambiarMoneda($divisaOrig, $divisaDest, $cant)
+{
     $newCant = 0;
-    
+
     if ($divisaOrig == EURO) {
         if ($divisaDest == DOLAR) {
             $newCant = $cant * EUROtoDOLAR;
@@ -47,7 +48,5 @@ function cambiarMoneda($divisaOrig, $divisaDest, $cant) {
     } else {
         return 'error';
     }
-    return array('origen' =>$divisaOrig, 'destino' => $divisaDest, 'cantidad' => $newCant);
+    return array('origen' => $divisaOrig, 'destino' => $divisaDest, 'cantidad' => $newCant);
 }
-
-?>
