@@ -35,8 +35,10 @@
 
     <?php
     if (isset($_POST['enviar'])) {
+        echo $http_response_header;
         echo "<h2>Calculo del cambio:</h2>";
-        $datos = file_get_contents("https://localhost/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]", false);
+        $datos = file_get_contents("https://localhost/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]");
+        //$datos = fopen("https://192.168.0.57/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]", false);
         echo "Datos: " . $datos;
         //$datos = explode("=", $datos, PHP_INT_MAX); // Divido el string en dos partes
         //$datos = $datos[1];     // Me quedo con la parte codificada en JSONç
