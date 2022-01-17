@@ -15,10 +15,13 @@ $divisaDestino = $_GET['dest']; //divisa de destino
 $cantidad = $_GET['cant'];      //cantidad a cambiar
 
 $cambio = cambiarMoneda($divisaOrigen, $divisaDestino, $cantidad);
-if ($cambio != 'error') {
+echo json_encode($cambio);
+/*if ($cambio != 'error') {
     echo json_encode($cambio);
 } else
     echo json_encode("$cambio");
+ * */
+ 
 
 
 //echo json_encode($kk);
@@ -48,5 +51,6 @@ function cambiarMoneda($divisaOrig, $divisaDest, $cant)
     } else {
         return 'error';
     }
-    return array('origen' => $divisaOrig, 'destino' => $divisaDest, 'cantidad' => $newCant);
+    $arrayDivisas = ['orig' => $divisaOrig, 'dest' => $divisaDest, 'cant' => $newCant];
+    return $arrayDivisas;
 }
