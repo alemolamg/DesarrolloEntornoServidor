@@ -15,6 +15,9 @@ $divisaDestino = $_GET['dest']; //divisa de destino
 $cantidad = $_GET['cant'];      //cantidad a cambiar
 
 $cambio = cambiarMoneda($divisaOrigen, $divisaDestino, $cantidad);
+
+//var_dump($cambio);
+//echo '<br>';
 echo json_encode($cambio);
 /*if ($cambio != 'error') {
     echo json_encode($cambio);

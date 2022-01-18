@@ -36,21 +36,46 @@
         <?php
         if (isset($_POST['enviar'])) {
             //echo $http_response_header;
-            echo "<h2>Calculo del cambio:</h2>";
+            echo "<h2>Cálculo del cambio:</h2>";
             $datos = file_get_contents("http://localhost/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]");
             //$datos = fopen("https://192.168.0.57/DesarrolloEntornoServidor/tema06/serviciosREST/Ejercicio03/servicio.php?orig=$_POST[tipoPrincipal]&dest=$_POST[nuevaMoneda]&cant=$_POST[cantidad]", false);
-            var_dump($datos);
-            echo "<br>";
+            //var_dump($datos);
+            //echo "<br>";
             //$datos = explode("=", $datos, PHP_INT_MAX); // Divido el string en dos partes
             //$datos = $datos[1];     // Me quedo con la parte codificada en JSON
             $cambioDatos = json_decode($datos);
-            print_r($cambioDatos);
+            //var_dump($cambioDatos);
+            //print_r($cambioDatos);
+            echo "<br>";
+            echo mostrarCambio2($cambioDatos, $_POST['cantidad']);
         }
-        
-        mostrarCambio($array){
-            
+
+        function mostrarCambio($array, $cantIni) {
+            //echo $cantIni ." " . $array["orig"]. "son al cambio " . $array["cant"] ." de " . $array["dest"];
+            //var_dump($array);
+            $texto = $cantIni . " " . $array["orig"] . " son al cambio " ;
+            return $texto;
         }
-        
+
+        function mostrarCambio2($array, $cantIni) {
+            $orig = 0;
+            $dest = 0;
+            $newCant = 0;
+            foreach ($array as $key => $value) {
+                if ($key == "orig") {
+                    $orig = $value;
+                } elseif ($key == "dest") {
+                    $dest = $value;
+                } elseif ($key == "cant") {
+                    $newCant = $value;
+                }
+                //echo 'Key = ' . $key . ", valor = " . $value . "<br>";
+            }
+
+            //echo $cantIni ." " . $array["orig"]. "son al cambio " . $array["cant"] ." de " . $array["dest"];
+            $texto = $cantIni ." " . $orig. "s son al cambio " . $newCant ." de " . $dest ."s <br>";
+            return $texto;
+        }
         ?>
     </body>
 
