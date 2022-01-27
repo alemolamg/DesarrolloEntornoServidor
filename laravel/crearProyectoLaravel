@@ -9,4 +9,5 @@
 - Instalamos breeze: `php artisan breeze:install`
 - Para terminar, instalamos los paquetes de Node.js necesarios con : `npm install && npm run dev`.
 
-6.
+6. Crear ruta.... 
+7. Modificar navbar ... en las rutas se pone SIEMPRE EL NOMBRE !!!
