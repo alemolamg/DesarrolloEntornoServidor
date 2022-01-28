@@ -12,11 +12,12 @@
                     Entro en el catalogo. Pinta en la película para ver más datos
                 </div>
                 <div>
-                    <a href="show" :active="request()->routeIs('show')">
+                    <a href="{{route('show')}}" :active="request()->routeIs('show')">
                         <a href="./catalog/show/'Inglourius Basterds'" :active="request()->routeIs('show')">
                             <img src="https://picfiles.alphacoders.com/147/147078.jpg" class="mt-2"
                                  width="200px">
                         </a>
+                    </a>
                 </div>
             </div>
         </div>
