@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrutasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,5 +42,8 @@ Route::get('/perfil', function () {
 Route::get('/component', function () {
     return view('vista_component');
 });
+
+//Seleccionando FrutasController y posteriormente pulsamos en la bombilla y seleccionamos 'Replace ...' con la bombilla
+Route::get('/frutas', [FrutasController::class, 'index']);
 
 require __DIR__ . '/auth.php';
