@@ -28,7 +28,12 @@ Route::get('/login', function () {
 
 Route::get('/catalog', function () {
     return view('catalog.index');
-})->name('catalogo');
+})->middleware(['auth'])->name('catalogo');
+
+Route::get('/catalog/show/{id?}', function ($id = "CAMBIAR POR ID PELÍCULA") {
+    $data['id'] = $id;
+    return view('catalog.show', $data);
+})->middleware(['auth'])->name('show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
