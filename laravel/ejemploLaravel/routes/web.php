@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CochesController;
 use App\Http\Controllers\FrutasController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,11 @@ Route::get('/component', function () {
 });
 
 //Seleccionando FrutasController y posteriormente pulsamos en la bombilla y seleccionamos 'Replace ...' con la bombilla
-Route::get('/frutas', [FrutasController::class, 'index']);
+Route::prefix('fruteria')->group(function () {  //En el grupo, todas las rutas colgarán del prefijo asignado
+    Route::get('/frutas', [FrutasController::class, 'index']);
+    Route::get('/naranjas/{k?}', [FrutasController::class, 'naranjas'])->name('naranjas');
+    Route::get('/peras', [FrutasController::class, 'peras'])->name('peras');
+});
+
 
 require __DIR__ . '/auth.php';
