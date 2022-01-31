@@ -51,5 +51,15 @@ Route::prefix('fruteria')->group(function () {  //En el grupo, todas las rutas c
     Route::get('/peras', [FrutasController::class, 'peras'])->name('peras');
 });
 
+Route::get('/contacto/{nombre?}/{edad?}', function ($nombre = "Rubén", $edad = "22") {
+    return view('contacto.contacto')->with('nom', $nombre)
+        ->with('edad', $edad)
+        ->with('frutas', array('Manzana', 'Pera', 'Sandía', 'Melón', 'Naranja'));
+})->where(['nombre' => '[A-Za-z]+', 'edad' => '[0-9]+'])
+    ->name('contact');
+
+Route::get('/inicio', function () {
+    return view('contacto.inicio');
+});
 
 require __DIR__ . '/auth.php';
