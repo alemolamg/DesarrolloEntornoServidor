@@ -25,4 +25,18 @@ class FrutasController extends Controller
     {
         return "Acción de Peras";
     }
+
+    public function recibirForm(Request $request)
+    {
+
+        if ($request->input('nombre') != 'pera') {
+            return redirect()->back()->withInput()->with('status', 'error en form');
+        }
+        //return redirect()->route('frutas')->withInput();
+
+        //echo $request['nombre'];    //Método más usual
+        //echo "<br>";
+        //echo $request->input('nombre');   //Otro método
+        return "Se ha recibido el formulario";
+    }
 }

@@ -47,6 +47,7 @@ Route::get('/component', function () {
 //Seleccionando FrutasController y posteriormente pulsamos en la bombilla y seleccionamos 'Replace ...' con la bombilla
 Route::prefix('fruteria')->group(function () {  //En el grupo, todas las rutas colgarán del prefijo asignado
     Route::get('/frutas', [FrutasController::class, 'index']);
+    Route::post('/frutas', [FrutasController::class, 'recibirForm']);
     Route::get('/naranjas/{k?}', [FrutasController::class, 'naranjas'])->name('naranjas');
     Route::get('/peras', [FrutasController::class, 'peras'])->name('peras');
 });
@@ -56,7 +57,8 @@ Route::get('/contacto/{nombre?}/{edad?}', function ($nombre = "Rubén", $edad = 
         ->with('edad', $edad)
         ->with('frutas', array('Manzana', 'Pera', 'Sandía', 'Melón', 'Naranja'));
 })->where(['nombre' => '[A-Za-z]+', 'edad' => '[0-9]+'])
-    ->name('contact');
+    ->name('contact')
+    ->middleware('esMayorEdad:10');
 
 Route::get('/inicio', function () {
     return view('contacto.inicio');

@@ -13,4 +13,4 @@
 7. Modificar navbar ... en las rutas se pone SIEMPRE EL NOMBRE !!!
 8. Para crear un controlador, utilizamos el comando: `php artisan make:controller nombreController --invokable ` donde 'nombreController' se cambia por el nombre que queramos. Podemos quitar el '--invokable' si no queremos que cree el invocador por defecto. Para crear el controlador con las clases precreadas, utilizamos la extensión `--resource`.
 9. Para crear un middleware, utilizamos el comado: `php artisan make:middleware NameMiddleware`. Los middleware se guardan en http->Controllers->Middleware.
-10. 
+10. Una vez creado y configurado nuestro middleware, debemos añadirlo en el kernel de la aplicación que se encuentra en la ruta: `\app\Http\Request\Kernel.php`
