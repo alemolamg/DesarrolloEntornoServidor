@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationFormRequest;
 use Illuminate\Http\Request;
 
 class FrutasController extends Controller
@@ -26,13 +27,34 @@ class FrutasController extends Controller
         return "Acción de Peras";
     }
 
+    /**
+     * @param ValidationFormRequest $request Contiene los métodos de validación personalizados.
+     * @return \Illuminate\Http\RedirectResponse|string Diferentes tipos de erroes si es incorrecto, la nueva página si es correcto
+     */
+    public function recibirForm(ValidationFormRequest $request)
+    {
+
+        if ($request->input('nombre') != 'pera') {
+            return redirect()->back()->withInput()->with('status', 'error en form');
+        }
+        return "Se ha recibido el formulario";
+
+    }
+
+    /*  Versión antigua con reglas de validación en el método.
     public function recibirForm(Request $request)
     {
+
+        $messages = [
+            'nombre.required' => 'El nombre es obligatorio',
+            'descrip.required' => 'La descripción es obligatoria',
+        ];
 
         $request->validate([
             'nombre' => 'required|max:15',
             'descrip' => 'required',
-        ]);
+        ], $messages);
+
 
         if ($request->input('nombre') != 'pera') {
             return redirect()->back()->withInput()->with('status', 'error en form');
@@ -43,4 +65,5 @@ class FrutasController extends Controller
         //echo "<br>";
         //echo $request->input('nombre');   //Otro método
     }
+    */
 }

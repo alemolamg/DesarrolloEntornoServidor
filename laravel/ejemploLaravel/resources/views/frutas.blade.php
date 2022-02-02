@@ -31,7 +31,7 @@
         </p>
         <p>
             <label for="descrip">Descripción: </label>
-            <input type="text" name="descrip" value="{{old('descrip')}}">
+            <input type="textarea" name="descrip" value="{{old('descrip')}}">
             @error('descrip')
             {{$message}}
             @enderror
@@ -39,6 +39,14 @@
         <input type="submit" value="Enviar">
 
     </form>
+
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 
 

@@ -14,3 +14,10 @@
 8. Para crear un controlador, utilizamos el comando: `php artisan make:controller nombreController --invokable ` donde 'nombreController' se cambia por el nombre que queramos. Podemos quitar el '--invokable' si no queremos que cree el invocador por defecto. Para crear el controlador con las clases precreadas, utilizamos la extensión `--resource`.
 9. Para crear un middleware, utilizamos el comado: `php artisan make:middleware NameMiddleware`. Los middleware se guardan en http->Controllers->Middleware.
 10. Una vez creado y configurado nuestro middleware, debemos añadirlo en el kernel de la aplicación que se encuentra en la ruta: `\app\Http\Request\Kernel.php`
+
+
+## Request
+Para crear nuestras request, utilizamos el siguiente comando:
+1. `php artisan make:request ValidationFormRequest`
+2. Entramos en el archivo que se a creado dentro de `\app\Http\Request\ValidationFormRequest` y cambiamos la autorización a 'true'.
+
