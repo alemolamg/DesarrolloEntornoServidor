@@ -29,13 +29,13 @@ class FrutasController extends Controller
 
     /**
      * @param ValidationFormRequest $request Contiene los métodos de validación personalizados.
-     * @return \Illuminate\Http\RedirectResponse|string Diferentes tipos de erroes si es incorrecto, la nueva página si es correcto
+     * @return \Illuminate\Http\RedirectResponse|string Mensaje de error si es incorrecto, la nueva página si es correcto
      */
     public function recibirForm(ValidationFormRequest $request)
     {
 
         if ($request->input('nombre') != 'pera') {
-            return redirect()->back()->withInput()->with('status', 'error en form');
+            return redirect()->back()->withInput()->with('status', 'ERROR en form, COMPRUEBA si es "pera" el nombre');
         }
         return "Se ha recibido el formulario";
 
