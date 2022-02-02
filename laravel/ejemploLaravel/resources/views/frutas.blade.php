@@ -25,10 +25,16 @@
         <p>
             <label for="nombre">Nombre: </label>
             <input type="text" name="nombre" value="{{old('nombre')}}">
+            @if($errors->has('nombre'))
+                {{$errors->first('nombre')}}
+            @endif
         </p>
         <p>
             <label for="descrip">Descripción: </label>
             <input type="text" name="descrip" value="{{old('descrip')}}">
+            @error('descrip')
+            {{$message}}
+            @enderror
         </p>
         <input type="submit" value="Enviar">
 

@@ -29,14 +29,18 @@ class FrutasController extends Controller
     public function recibirForm(Request $request)
     {
 
+        $request->validate([
+            'nombre' => 'required|max:15',
+            'descrip' => 'required',
+        ]);
+
         if ($request->input('nombre') != 'pera') {
             return redirect()->back()->withInput()->with('status', 'error en form');
         }
-        //return redirect()->route('frutas')->withInput();
+        return "Se ha recibido el formulario";
 
         //echo $request['nombre'];    //Método más usual
         //echo "<br>";
         //echo $request->input('nombre');   //Otro método
-        return "Se ha recibido el formulario";
     }
 }
