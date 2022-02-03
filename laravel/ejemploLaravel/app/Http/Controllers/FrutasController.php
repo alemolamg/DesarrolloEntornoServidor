@@ -42,6 +42,7 @@ class FrutasController extends Controller
     }
 
     /*  Versión antigua con reglas de validación en el método.
+
     public function recibirForm(Request $request)
     {
 

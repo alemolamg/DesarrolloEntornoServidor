@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,14 +27,15 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+/*
 Route::get('/catalog', function () {
     return view('catalog.index');
 })->middleware(['auth'])->name('catalogo');
+*/
 
-Route::get('/catalog/show/{id?}', function ($id = "CAMBIAR POR ID PELÍCULA") {
-    $data['id'] = $id;
-    return view('catalog.show', $data);
-})->middleware(['auth'])->name('show');
+Route::get('/catalog', [CatalogController::class, 'index'])->middleware(['auth'])->name('catalogo');
+
+Route::get('/catalog/show/{id?}', [CatalogController::class, 'show'])->middleware(['auth'])->name('show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

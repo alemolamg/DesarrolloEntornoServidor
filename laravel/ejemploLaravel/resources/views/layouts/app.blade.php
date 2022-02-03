@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+     
     <!-- Tailwind css link -->
     <script src="https://cdn.tailwindcss.com"></script>
 

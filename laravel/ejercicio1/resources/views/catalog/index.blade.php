@@ -9,28 +9,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Entro en el catalogo. Pinta en la película para ver más datos
+                    Entro en el catalogo. Pinta en cada pelicula para ver más datos.
                 </div>
 
-                <div class="flex">
-                    <div class="w-1/4 px-4 bg-red-600">
-                        <a href="{{route('show')}}" :active="request()->routeIs('show')">
-                            <a href="./catalog/show/'Inglourius Basterds'" :active="request()->routeIs('show')">
-                                <img src="https://picfiles.alphacoders.com/147/147078.jpg" class="mt-2"
-                                     width="200px">
-                            </a>
-                        </a>
+                <div class="">
+                    <div class="grid grid-cols-4 content-center">
+                        @foreach($listaPeliculas as $key => $peli)
+                            <div class="text-xl text-center">
+                                <a href="{{ url('/catalog/show/'. $key ) }}" :active="request()->routeIs('show')">
+                                    <img src="{{$peli['poster']}}" class="mt-2 max-h-50">
+                                    <p>{{$peli['title']}}</p>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
 
-                    <div class="w-1/4 px-4 bg-green-600">
+
+                <!-- <div class="w-1/4 px-4 bg-green-600">
                         <a href="{{route('show')}}" :active="request()->routeIs('show')">
                             <a href="./catalog/show/'MesetaNorte'" :active="request()->routeIs('show')">
                                 <img src="https://picfiles.alphacoders.com/147/147078.jpg" class="mt-2"
-                                     width="200px">
+                                     width="">
                             </a>
                         </a>
                     </div>
+                    -->
+
+
                 </div>
+
             </div>
         </div>
     </div>
