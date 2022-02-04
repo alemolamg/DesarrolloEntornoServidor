@@ -19,7 +19,7 @@ class CatalogController extends Controller
             'title' => 'El Padrino. Parte II',
             'year' => '1974',
             'director' => 'Francis Ford Coppola',
-            'poster' => 'https://es.web.img3.acsta.net/r_1280_720/medias/nmedia/18/68/09/06/20197890.jpg',
+            'poster' => 'https://posteronline.es/wp-content/uploads/2020/10/PE0037-El-padrino-2-T.jpg',
             'rented' => false,
             'synopsis' => 'Continuación de la historia de los Corleone por medio de dos historias paralelas: la elección de Michael Corleone como jefe de los negocios familiares y los orígenes del patriarca, el ya fallecido Don Vito, primero en Sicilia y luego en Estados Unidos, donde, empezando desde abajo, llegó a ser un poderosísimo jefe de la mafia de Nueva York.'
         ),
@@ -27,7 +27,7 @@ class CatalogController extends Controller
             'title' => 'La lista de Schindler',
             'year' => '1993',
             'director' => 'Steven Spielberg',
-            'poster' => 'http://ia.media-imdb.com/images/M/MV5BMzMwMTM4MDU2N15BMl5BanBnXkFtZTgwMzQ0MjMxMDE@._V1_SX214_AL_.jpg',
+            'poster' => 'https://es.web.img2.acsta.net/pictures/14/02/27/09/35/442750.jpg',
             'rented' => false,
             'synopsis' => 'Segunda Guerra Mundial (1939-1945). Oskar Schindler (Liam Neeson), un hombre de enorme astucia y talento para las relaciones públicas, organiza un ambicioso plan para ganarse la simpatía de los nazis. Después de la invasión de Polonia por los alemanes (1939), consigue, gracias a sus relaciones con los nazis, la propiedad de una fábrica de Cracovia. Allí emplea a cientos de operarios judíos, cuya explotación le hace prosperar rápidamente. Su gerente (Ben Kingsley), también judío, es el verdadero director en la sombra, pues Schindler carece completamente de conocimientos para dirigir una empresa.'
         ),
@@ -43,7 +43,7 @@ class CatalogController extends Controller
             'title' => 'Cadena perpetua',
             'year' => '1994',
             'director' => 'Frank Darabont',
-            'poster' => 'http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg',
+            'poster' => 'https://es.web.img3.acsta.net/medias/nmedia/18/74/26/88/20133359.jpg',
             'rented' => true,
             'synopsis' => 'Acusado del asesinato de su mujer, Andrew Dufresne (Tim Robbins), tras ser condenado a cadena perpetua, es enviado a la cárcel de Shawshank. Con el paso de los años conseguirá ganarse la confianza del director del centro y el respeto de sus compañeros de prisión, especialmente de Red (Morgan Freeman), el jefe de la mafia de los sobornos.'
         ),
@@ -67,7 +67,7 @@ class CatalogController extends Controller
             'title' => 'Uno de los nuestros',
             'year' => '1990',
             'director' => 'Martin Scorsese',
-            'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTY2OTE5MzQ3MV5BMl5BanBnXkFtZTgwMTY2NTYxMTE@._V1_SX214_AL_.jpg',
+            'poster' => 'https://3.bp.blogspot.com/-pCirhuiJd2A/VfVfNA6aKmI/AAAAAAAAa04/ZaLoALVNebU/s1600/%2528%2528%2528Essential-Film-Goodfellas.jpg',
             'rented' => false,
             'synopsis' => 'Henry Hill, hijo de padre irlandés y madre siciliana, vive en Brooklyn y se siente fascinado por la vida que llevan los gángsters de su barrio, donde la mayoría de los vecinos son inmigrantes. Paul Cicero, el patriarca de la familia Pauline, es el protector del barrio. A los trece años, Henry decide abandonar la escuela y entrar a formar parte de la organización mafiosa como chico de los recados; muy pronto se gana la confianza de sus jefes, gracias a lo cual irá subiendo de categoría. '
         ),
@@ -83,7 +83,7 @@ class CatalogController extends Controller
             'title' => 'American History X',
             'year' => '1998',
             'director' => 'Tony Kaye',
-            'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjMzNDUwNTIyMF5BMl5BanBnXkFtZTcwNjMwNDg3OA@@._V1_SY317_CR17,0,214,317_AL_.jpg',
+            'poster' => 'https://www.tuposter.com/pub/media/catalog/product/cache/image/700x560/91bbed04eb86c2a8aaef7fbfb2041b2a/f/i/file_75_1.jpg',
             'rented' => false,
             'synopsis' => 'Derek (Edward Norton), un joven "skin head" californiano de ideología neonazi, fue encarcelado por asesinar a un negro que pretendía robarle su furgoneta. Cuando sale de prisión y regresa a su barrio dispuesto a alejarse del mundo de la violencia, se encuentra con que su hermano pequeño (Edward Furlong), para quien Derek es el modelo a seguir, sigue el mismo camino que a él lo condujo a la cárcel.'
         ),
@@ -131,7 +131,7 @@ class CatalogController extends Controller
             'title' => 'La naranja mecánica',
             'year' => '1971',
             'director' => 'Stanley Kubrick',
-            'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTY3MjM1Mzc4N15BMl5BanBnXkFtZTgwODM0NzAxMDE@._V1_SY317_CR0,0,214,317_AL_.jpg',
+            'poster' => 'https://i.promecal.es/IMG/2021/7FE36CC1-94EC-4295-1021C471EB97E4FE.JPG',
             'rented' => false,
             'synopsis' => 'Gran Bretaña, en un futuro indeterminado. Alex (Malcolm McDowell) es un joven muy agresivo que tiene dos pasiones: la violencia desaforada y Beethoven. Es el jefe de la banda de los drugos, que dan rienda suelta a sus instintos más salvajes apaleando, violando y aterrorizando a la población. Cuando esa escalada de terror llega hasta el asesinato, Alex es detenido y, en prisión, se someterá voluntariamente a una innovadora experiencia de reeducación que pretende anular drásticamente cualquier atisbo de conducta antisocial.'
         ),
@@ -139,7 +139,7 @@ class CatalogController extends Controller
             'title' => 'La chaqueta metálica',
             'year' => '1987',
             'director' => 'Stanley Kubrick',
-            'poster' => 'https://images-na.ssl-images-amazon.com/images/I/71GOnm9aNKL._SX342_.jpg',
+            'poster' => 'https://www.tuposter.com/pub/media/catalog/product/cache/image/700x560/91bbed04eb86c2a8aaef7fbfb2041b2a/f/i/file_129_2.jpg',
             'rented' => true,
             'synopsis' => 'Un grupo de reclutas se prepara en Parish Island, centro de entrenamiento de la marina norteamericana. Allí está el sargento Hartman, duro e implacable, cuya única misión en la vida es endurecer el cuerpo y el alma de los novatos, para que puedan defenderse del enemigo. Pero no todos los jóvenes están preparados para soportar sus métodos. '
         ),
@@ -155,7 +155,7 @@ class CatalogController extends Controller
             'title' => 'Taxi Driver',
             'year' => '1976',
             'director' => 'Martin Scorsese',
-            'poster' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Taxi_driver_movieposter.jpg/220px-Taxi_driver_movieposter.jpg',
+            'poster' => 'https://i.pinimg.com/736x/c7/56/08/c7560878bd7d89336f49db7578b4223a.jpg',
             'rented' => false,
             'synopsis' => 'Para sobrellevar el insomnio crónico que sufre desde su regreso de Vietnam, Travis Bickle (Robert De Niro) trabaja como taxista nocturno en Nueva York. Es un hombre insociable que apenas tiene contacto con los demás, se pasa los días en el cine y vive prendado de Betsy (Cybill Shepherd), una atractiva rubia que trabaja como voluntaria en una campaña política. Pero lo que realmente obsesiona a Travis es comprobar cómo la violencia, la sordidez y la desolación dominan la ciudad. Y un día decide pasar a la acción.'
         ),
@@ -163,7 +163,7 @@ class CatalogController extends Controller
             'title' => 'El club de la lucha',
             'year' => '1999',
             'director' => 'David Fincher',
-            'poster' => 'http://es.web.img3.acsta.net/c_215_290/medias/nmedia/18/69/04/88/20140966.jpg',
+            'poster' => 'https://m.media-amazon.com/images/I/91uFUdkDTwL._AC_SY679_.jpg',
             'rented' => true,
             'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
         )
@@ -188,6 +188,7 @@ class CatalogController extends Controller
     public function create()
     {
         //
+        return view('catalog.create');
     }
 
     /**
@@ -209,7 +210,7 @@ class CatalogController extends Controller
      */
     public function show($id)
     {
-        return view('catalog.show')->with('miPeli', $this->arrayPeliculas[$id]);
+        return view('catalog.show')->with('miPeli', $this->arrayPeliculas[$id])->with('idPeli', $id);
 
     }
 
@@ -221,7 +222,7 @@ class CatalogController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('catalog.edit')->with('miPeli', $this->arrayPeliculas[$id])->with('idPeli', $id);
     }
 
     /**
@@ -233,7 +234,13 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->arrayPeliculas[$id]['title'] = $request->titulo;
+        $this->arrayPeliculas[$id]['year'] = $request->anio;
+        $this->arrayPeliculas[$id]['director'] = $request->director;
+        $this->arrayPeliculas[$id]['poster'] = $request->poster;
+        $this->arrayPeliculas[$id]['synopsis'] = $request->resumen;
+
+        return view('catalog.index')->with('listaPeliculas', $this->arrayPeliculas);
     }
 
     /**
@@ -245,5 +252,22 @@ class CatalogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function aniadirPeli(Request $request)
+    {
+        //
+        $peli = array(
+            'title' => $request->titulo,
+            'year' => $request->anio,
+            'director' => $request->director,
+            'poster' => $request->poster,
+            'rented' => false,
+            'synopsis' => $request->resumen
+        );
+
+        array_push($this->arrayPeliculas, $peli);
+        //$this->arrayPeliculas[] = $peli;
+        return view('catalog.index')->with('listaPeliculas', $this->arrayPeliculas);
     }
 }

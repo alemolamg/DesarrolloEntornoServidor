@@ -15,9 +15,10 @@
                 <div class="">
                     <div class="grid grid-cols-4 content-center">
                         @foreach($listaPeliculas as $key => $peli)
-                            <div class="text-xl text-center">
+                            <div class="text-xl text-center flex justify-center ">
                                 <a href="{{ url('/catalog/show/'. $key ) }}" :active="request()->routeIs('show')">
-                                    <img src="{{$peli['poster']}}" class="mt-2 max-h-50">
+                                    <img src="{{$peli['poster']}}" class="mt-2 "
+                                         style="max-height: 300px">
                                     <p>{{$peli['title']}}</p>
                                 </a>
                             </div>

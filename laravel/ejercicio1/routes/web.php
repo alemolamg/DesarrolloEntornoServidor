@@ -33,9 +33,16 @@ Route::get('/catalog', function () {
 })->middleware(['auth'])->name('catalogo');
 */
 
-Route::get('/catalog', [CatalogController::class, 'index'])->middleware(['auth'])->name('catalogo');
+Route::middleware(['auth'])->prefix('/catalog')->group(function () {
+    Route::get('/', [CatalogController::class, 'index'])->name('catalogo');
+    Route::get('/show/{id?}', [CatalogController::class, 'show'])->name('show');
+    Route::get('/create', [CatalogController::class, 'create'])->name('crear');
+    Route::post('/create', [CatalogController::class, 'aniadirPeli']);
+    Route::get('/edit/{id}', [CatalogController::class, 'edit'])->name('editar');
+    Route::put('/edit/{id?}', [CatalogController::class, 'update'])->name('editar');
 
-Route::get('/catalog/show/{id?}', [CatalogController::class, 'show'])->middleware(['auth'])->name('show');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
