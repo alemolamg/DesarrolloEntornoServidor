@@ -15,6 +15,7 @@
 9. Para crear un middleware, utilizamos el comado: `php artisan make:middleware NameMiddleware`. Los middleware se guardan en http->Controllers->Middleware.
 10. Una vez creado y configurado nuestro middleware, debemos añadirlo en el kernel de la aplicación que se encuentra en la ruta: `\app\Http\Request\Kernel.php`
 
+11. Crear  una nueva migración: Para hacer la migración utilizamos el comando: `php artisan make:migration crearTabla`. Hay muchos comandos para organizar nuestras tablas y migraciones, por lo que es recomendable seguir desde [La documentación](https://laravel.com/docs/8.x/migrations).
 
 ## Request
 Para crear nuestras request, utilizamos el siguiente comando:
