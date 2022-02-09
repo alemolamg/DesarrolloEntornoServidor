@@ -254,6 +254,11 @@ class CatalogController extends Controller
         //
     }
 
+    public function getArrayPelis(): array
+    {
+        return $this->arrayPeliculas;
+    }
+
     public function aniadirPeli(Request $request)
     {
         //
