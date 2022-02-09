@@ -13,17 +13,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('inicio')" :active="request()->routeIs('inicio')">
+                        {{ __('inicio') }}
+                    </x-nav-link>
                     @auth
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('dashboard') }}
+                        <x-nav-link :href="route('frutas')" :active="request()->routeIs('frutas')">
+                            {{ __('Fruteria') }}
                         </x-nav-link>
                         <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')">
                             {{ __('perfil') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('dashboard') }}
+                        </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('inicio')" :active="request()->routeIs('inicio')">
-                        {{ __('inicio') }}
-                    </x-nav-link>
                 </div>
             </div>
 

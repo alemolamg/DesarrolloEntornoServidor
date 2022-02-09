@@ -46,7 +46,7 @@ Route::get('/component', function () {
 
 //Seleccionando FrutasController y posteriormente pulsamos en la bombilla y seleccionamos 'Replace ...' con la bombilla
 Route::prefix('fruteria')->group(function () {  //En el grupo, todas las rutas colgarán del prefijo asignado
-    Route::get('/frutas', [FrutasController::class, 'index']);
+    Route::get('/frutas', [FrutasController::class, 'index'])->name('frutas');
     Route::post('/frutas', [FrutasController::class, 'recibirForm']);
     Route::get('/naranjas/{k?}', [FrutasController::class, 'naranjas'])->name('naranjas');
     Route::get('/peras', [FrutasController::class, 'peras'])->name('peras');
