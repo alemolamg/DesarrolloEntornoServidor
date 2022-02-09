@@ -32,6 +32,8 @@
 13. Para llevar un control de las bases de datos y permitir la opción de hacer pruebas (entre otras cosas), podemos usar las semillas ('seed' en inglés). El fichero que utilizamos normalmente para las pruebas es `database/seeders/DatabaseSeeder.php`. Para ejecutar los datos de prueba, utilizamos los comandos `php artisan db:seed`
 	- Si queremos hacer un seeder nuevo, debemos llamarlo en el `DatabaseSeeder.php` para que pueda ejecutarse.
 
+14. Crear un modelo `php artisan make:model nombreModelo`, donde nombreModelo lo cambiamos por el deseado. Es obligatorio que comience por mayúscula el nombre del modelo, y en singular y en INGLES !!.
+
 ## Request
 Para crear nuestras request, utilizamos el siguiente comando:
 1. `php artisan make:request ValidationFormRequest`

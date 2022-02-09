@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidationFormRequest;
+use App\Models\Fruit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,8 @@ class FrutasController extends Controller
 
     public function peras()
     {
-        $frutas = DB::table('frutas')->get();
+        //$frutas = DB::table('frutas')->get();
+        $frutas = Fruit::all();
 
         return view('peras')->with('frutas', $frutas);
     }
