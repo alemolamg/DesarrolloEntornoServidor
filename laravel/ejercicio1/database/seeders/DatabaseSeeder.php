@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\CatalogController;
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Table;
@@ -173,6 +173,12 @@ class DatabaseSeeder extends Seeder
             'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
         )
     );
+    private $users = array(
+        array(['name' => 'Alemol', 'email' => 'ale@alemol.com', 'email_verified_at' => NULL],
+            'password' => '$2y$10$4MdN2gZSSQkqh5YXX/bmg.NFeTnueefyHd5GAs.aBt.4hn5EnlXiq', 'remember_token' => NULL),
+        array(['name' => 'Usuario', 'email' => 'user@user.com', 'email_verified_at' => NULL],
+            'password' => '25f9e794323b453885f5181f1b624d0b', 'remember_token' => NULL),
+    );
 
     /**
      * Seed the application's database.
@@ -182,7 +188,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $catalogo = new CatalogController();
+
+        foreach ($this->users as $usu) {
+            $u = new User();
+            $u->name = $usu['name'];
+            $u->email = $usu['email'];
+            $u->password = $usu['password'];
+            $u->save();
+        }
 
         foreach ($this->arrayPeliculas as $pelicula) {
 
