@@ -41,3 +41,9 @@ Para crear nuestras request, utilizamos el siguiente comando:
 1. `php artisan make:request ValidationFormRequest`
 2. Entramos en el archivo que se a creado dentro de `\app\Http\Request\ValidationFormRequest` y cambiamos la autorización a 'true'.
 
+## Gestión de subida de archivos.
+Todos los archivos que subimos desde Laravel, se guardan en la carpeta Storage. El problema es que no podemos llegar a la ruta donde se guarda por falta de permisos, por lo que debemos usar un enlace simbolico para ver dichos archivos. (Por ejemplo una imagen).
+El comando para hacer un enlace simbólico es: `php artisan storage:link`.
+
+- Muy importante: cada vez que cambiemos el directorio de sitio, debemos borrar dicha carpeta y volver a crear el enlace simbólico.
+
