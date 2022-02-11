@@ -83,7 +83,7 @@ class CatalogController extends Controller
             'synopsis' => $request->resumen,
         ]);
 
-        
+
         return view('catalog.index')->with('listaPeliculas', $pelicula);
     }
 
@@ -105,7 +105,7 @@ class CatalogController extends Controller
 
     public function aniadirPeli(Request $request)
     {
-        //
+
         $peli = array(
             'title' => $request->titulo,
             'year' => $request->anio,
@@ -115,8 +115,13 @@ class CatalogController extends Controller
             'synopsis' => $request->resumen
         );
 
-        array_push($this->arrayPeliculas, $peli);
+        $pelicula = new Movie($peli);
+
+        Movie::saved();
+
+        //array_push($this->arrayPeliculas, $peli);
         //$this->arrayPeliculas[] = $peli;
+
         return view('catalog.index')->with('listaPeliculas', $this->arrayPeliculas);
     }
 }

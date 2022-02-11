@@ -28,6 +28,8 @@
 
 12. Hacer migración: Para llevar a cabo la migración, utilizamos el comando `php artisan migrate`. Tambien podemos usar `php artisan migrate:refresh ` donde elimina las tablas y las crea de nuevo.
 	- Podemos ver el estado de las migraciones con: `php artisan migrate:status `.
+	- A la hora de cambiar los campos de una migración, debemos tener en cuenta las claves foráneas (fk), porque tienen que tener una nomenclatura especial: `nombreClase_id` ,donde cambiamos la nombreClase por el nombre de la tabla que hemos asignado.
+	- Después, asisgamos la siguiente linea: `$table->foreign('user_id')->references('id')->on('users');`
 
 13. Para llevar un control de las bases de datos y permitir la opción de hacer pruebas (entre otras cosas), podemos usar las semillas ('seed' en inglés). El fichero que utilizamos normalmente para las pruebas es `database/seeders/DatabaseSeeder.php`. Para ejecutar los datos de prueba, utilizamos los comandos `php artisan db:seed`
 	- Si queremos hacer un seeder nuevo, debemos llamarlo en el `DatabaseSeeder.php` para que pueda ejecutarse.
