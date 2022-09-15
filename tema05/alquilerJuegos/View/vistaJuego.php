@@ -8,13 +8,15 @@ if (!isset($_SESSION['user'])) {
 if (!isset($_POST['codJuego'])) {
     header('Location: index.php');
 }
+
+// Recuperamos el controlador.
 require_once '../Controllers/JuegoController.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <?php require_once '../method/referencias.php';  ?>
+    <?php require_once '../method/referencias.php';  ?> <!-- Carga el resto de opciones del head -->
     <title>Alquiler de Juegos</title>
 </head>
 
