@@ -15,7 +15,7 @@ require_once '../Controllers/JuegoController.php';
     <title>Alquiler de Juegos</title>
 </head>
 
-<body style="background-color: transparent">
+<body style="background-color: transparent" >
     <?php require_once('../method/navbar.php'); ?>
 
     <div id="ListaJuegos" class="container-fluid mt-5 p-0 pb-5 p-lg-4">
