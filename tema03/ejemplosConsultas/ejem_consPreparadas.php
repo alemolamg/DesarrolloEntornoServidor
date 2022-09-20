@@ -1,5 +1,5 @@
 <?php
-$dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes');
+$dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes'); // Direccion, Usuario, Pass, DB
 $stmt = $dwes->stmt_init();
 $stmt->prepare('INSERT INTO tienda (cod,nombre,tlf) VALUES (?,?,?)');
 if (!$stmt->errno) {
