@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-dwes
+    environment:
+      MYSQL_ROOT_PASSWORD: tirillas
+      MYSQL_DATABASE: dwes
+      MYSQL_USER: dwes
+      MYSQL_PASSWORD: abc123.
+    command: --bind-address=0.0.0.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-dwes
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_USER: dwes
+      PMA_PASSWORD: abc123.
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data:
