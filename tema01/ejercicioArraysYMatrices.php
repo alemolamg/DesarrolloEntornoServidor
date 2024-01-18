@@ -13,18 +13,19 @@
         ?>
 </table>
 <br/> <br/>
-<h2>Manera while + each</h2>
+<!-- DEPRECATED-->
+<!--<h2>Manera while + each</h2>
 <table border="1">
             <tr> <th>Índice</th> <th>Valor</th> </tr>
         <?php
-                reset($_SERVER);
+/*                reset($_SERVER);
                 while ($puntero = each($_SERVER)) {
                     echo "<tr>";
                     echo "<td>indice: ".$puntero["key"]."</td> <td>valor: ".$puntero["value"]."</td>";
                     echo "</tr>";
                 }
-        ?>
-</table>
+        */?>
+</table>-->
 
 
 <br/><br/><br/>
